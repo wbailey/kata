@@ -1,0 +1,2 @@
+rvm --install ruby-1.9.2-p0
+rvm --create --install use ruby-1.9.2-p0@kata
