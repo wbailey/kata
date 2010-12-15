@@ -12,7 +12,7 @@ Gem::Specification.new do |gem|
   gem.email    = 'wes.bailey@insiderpages.com'
   gem.homepage = 'http://github.com/wbailey/kata'
   
-  # ensure the gem is built out of versioned files
-  gem.files = Dir['Rakefile', '{bin,lib,man,test,spec}/**/*',
+  gem.files = Dir['Rakefile', '{bin,lib,spec}/**/*',
                   'README*', 'LICENSE*'] & `git ls-files -z`.split("\0")
+  gem.add_development_dependency "bundler", ">= 1.0.0"
 end

@@ -10,16 +10,20 @@ describe "Kata DSL" do
 
   context "kata" do
     it "is defined" do
-      lambda {
-        kata @summary
-      }.should_not raise_exception
+      capture_stdout do
+        lambda {
+          kata @summary
+        }.should_not raise_exception
+      end
     end
 
     it "accepts block" do
-      lambda {
-        kata @summary do
-        end
-      }.should_not raise_exception
+      capture_stdout do
+        lambda {
+          kata @summary do
+          end
+        }.should_not raise_exception
+      end
     end
 
     it "displays the summary" do
@@ -50,20 +54,24 @@ describe "Kata DSL" do
     end
 
     it "is defined" do
-      lambda {
-        kata @summary do
-          requirement @requirement
-        end
-      }.should_not raise_exception
+      capture_stdout do
+        lambda {
+          kata @summary do
+            requirement @requirement
+          end
+        }.should_not raise_exception
+      end
     end
 
     it "accepts block" do
-      lambda {
-        kata @summary do
-          requirement @requirement do
+      capture_stdout do
+        lambda {
+          kata @summary do
+            requirement @requirement do
+            end
           end
-        end
-      }.should_not raise_exception
+        }.should_not raise_exception
+      end
     end
 
     it "displays the summary" do
@@ -102,17 +110,19 @@ describe "Kata DSL" do
       ]
     end
 
-    it "is defined" do
-      lambda {
-        kata @summary do
-          requirement @requirement do
-            Kata::example @examples[0]
+    it "are displayed" do
+      capture_stdout do
+        lambda {
+          kata @summary do
+            requirement @requirement do
+              Kata::example @examples[0]
+            end
           end
-        end
-      }.should_not raise_exception
+        }.should_not raise_exception
+      end
     end
 
-    it "displays the summary" do
+    it "are displayed with prompt" do
       output = capture_stdout do
         lambda {
           kata @summary do

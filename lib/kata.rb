@@ -21,7 +21,7 @@ module Kata
 
     rsp = ask "\ncontinue (Y|n): ", 'y'
 
-    puts
+    @@output.puts
 
     elapsed = Time.now - start
     @@times << {:title => txt, :time => elapsed}
@@ -41,17 +41,19 @@ module Kata
   end
 
   def complete status = true
-    title = status ? 'Congratulations!' : 'You completed the following:'
+    if @@times.size > 0
+      title = status ? 'Congratulations!' : 'You completed the following:'
 
-    formatter = lambda do |sec| 
-      use = sec.round
-      [use/3600, use/60 % 60, use % 60].map {|v| v.to_s.rjust(2,'0')}.join(':')
+      formatter = lambda do |sec| 
+        use = sec.round
+        [use/3600, use/60 % 60, use % 60].map {|v| v.to_s.rjust(2,'0')}.join(':')
+      end
+
+      @@output.puts "\n\n#{title}"
+      @@output.puts @@times.inject('') {|s,p| s << "- #{p[:title][0,70].ljust(70, ' ')} #{formatter.call(p[:time]).rjust(10,' ')}\n"}
     end
 
-    puts "\n\n#{title}"
-    puts @@times.inject('') {|s,p| s << "- #{p[:title][0,90].ljust(90, ' ')} #{formatter.call(p[:time]).rjust(10,' ')}\n"}
-
-    exit status
+    exit 1 unless status
   end
 
   def ancestry
