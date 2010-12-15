@@ -2,7 +2,7 @@ require 'date'
 
 Gem::Specification.new do |gem|
   gem.name    = 'kata'
-  gem.version = '0.1.0'
+  gem.version = '0.1.1'
   gem.date    = Date.today.to_s
   
   gem.summary = 'A code kata DSL'
