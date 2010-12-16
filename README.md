@@ -1,11 +1,9 @@
 ## Kata ##
 
 A kata is defined as an exercise in programming which helps hone your skills
-through practice and repetition.  Authoring katas has typically been done in 
-web pages that do not help administer the test.  This gem provides a DSL to 
-author the kata such that when it is run it will also administer a test and 
-provide a final report on how much time it took to implement each requirement
-that makes up the kata.
+through practice and repetition.  Authoring katas is done in blogs with no
+real way of testing yourself for improvement.  This gem provides a DSL to 
+author the kata and administer it as a test providing feedback for evaluation.
 
 ### Writing a Kata ###
 
@@ -17,14 +15,20 @@ an RSpec test as illustrated below:
     kata "My First Kata" do
       requirement "Create an add method that will accept two digits as arguments" do
         example "invoking with 1 and 2 returns 3"
-        example "invoking with 1 returns 1"
+        example "invoking with 5 only returns 5"
         example "invoking with no arguments returns 0"
+      end
+      requirement "Modify the add method to access multple digits as arguments" do
+        example "invoking with 1 and 2 and 3 returns 6"
+        example "invoking with 1 and 2 and 3 and 4 and 5 returns 15"
       end
     end
 
+### Taking a Kata ###
+
 Running the kata from the command line yields:
 
-    wesbailey@feynman:~/kata> ruby sample.rb 
+    wesbailey@feynman:~/kata> ruby sample.rb
     My First Kata
        Create an add method that will accept two digits as arguments
           - invoking with 1 and 2 returns 3
@@ -33,9 +37,25 @@ Running the kata from the command line yields:
 
     continue (Y|n): 
 
-upon completing the requirements of the kata continue and the report is
+       Modify the add method to access multple digits as arguments
+          - invoking with 1 and 2 and 3 returns 6
+          - invoking with 1 and 2 and 3 and 4 and 5 returns 15
+
+    continue (Y|n): 
+
+
+### Completing the Kata ###
+
+After completing the requirements of the kata continue and the report is
 displayed:
 
     Congratulations!
-    - Create an add method that will accept two digits as arguments            00:01:07
+    - Create an add method that will accept two digits as arguments            00:02:02
+    - Modify the add method to access multple digits as arguments              00:00:45
 
+### Installing Kata ###
+
+It is up on rubygems.org so add it to your bundle or do it the old fashioned
+way with:
+
+    gem install kata
