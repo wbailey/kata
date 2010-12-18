@@ -1,8 +1,6 @@
 require 'spec_helper'
 require 'kata'
 
-include Kata
-
 describe "Kata DSL" do
   before :each do
     @summary = 'sample summary'

@@ -1,11 +1,11 @@
 require 'stringio'
 
 def capture_stdout
-  @@output = StringIO.new
-  @@input = StringIO.new("y\n")
+  $stdout = StringIO.new
+  $stdin = StringIO.new("y\n")
   yield
-  @@output.string.strip
+  $stdout.string.strip
 ensure
-  @@output = $stdout
-  @@input = $stdin
+  $stdout = STDOUT
+  $stdin = STDIN
 end

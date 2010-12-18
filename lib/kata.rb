@@ -1,19 +1,14 @@
 module Kata
-  # Allow rspec access
-  class << Kata
-    @@input = $stdin
-    @@output = $stdout
-    @@times = []
-  end
+  @@times = []
 
-  def kata txt
-    @@output.puts txt
+  def kata txt, lib = nil
+    puts txt
     yield if block_given?
     complete
   end
 
   def requirement txt
-    @@output.puts indent + txt
+    puts indent + txt
 
     start = Time.now
 
@@ -21,7 +16,7 @@ module Kata
 
     rsp = ask "\ncontinue (Y|n): ", 'y'
 
-    @@output.puts
+    puts
 
     elapsed = Time.now - start
     @@times << {:title => txt, :time => elapsed}
@@ -30,14 +25,14 @@ module Kata
   end
 
   def example txt
-    @@output.puts indent + '- ' + txt
+    puts indent + '- ' + txt
   end
 
   private
 
   def ask prompt, default
-    @@output.print prompt
-    @@input.gets.chomp || default
+    print prompt
+    $stdin.gets.chomp || default
   end
 
   def complete status = true
@@ -49,8 +44,10 @@ module Kata
         [use/3600, use/60 % 60, use % 60].map {|v| v.to_s.rjust(2,'0')}.join(':')
       end
 
-      @@output.puts "\n\n#{title}"
-      @@output.puts @@times.inject('') {|s,p| s << "- #{p[:title][0,70].ljust(70, ' ')} #{formatter.call(p[:time]).rjust(10,' ')}\n"}
+      puts "\n\n#{title}"
+      puts @@times.inject('') {|s,p| s << "- #{p[:title][0,70].ljust(70, ' ')} #{formatter.call(p[:time]).rjust(10,' ')}\n"}
+      puts '-' * 70 + ' ' * 5 + '-' * 8
+      puts 'Total Time taking Kata'.ljust(70, ' ') + ' ' * 5 + formatter.call(@@times.inject(0) {|s,h| s += h[:time]})
     end
 
     exit 1 unless status
