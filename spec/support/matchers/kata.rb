@@ -13,6 +13,6 @@ end
 RSpec::Matchers.define :have_examples do |summary, requirement, examples|
   example_str = examples.unshift('').join("\n      - ")
   match do |string|
-    string.split(/continue \(Y|n\)/)[0].strip == "#{summary}\n   #{requirement}#{example_str}"
+    string.split(/completed \(Y|n\)/)[0].strip == "#{summary}\n   #{requirement}#{example_str}"
   end 
 end

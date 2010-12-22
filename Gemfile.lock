@@ -9,7 +9,12 @@ GEM
     columnize (0.3.2)
     define_exception (0.0.3)
     diff-lcs (1.1.2)
-    highline (1.6.1)
+    github (0.4.5)
+      highline (~> 1.5.1)
+      json (>= 1.2.0)
+      text-format (>= 1.0.0)
+    highline (1.5.2)
+    json (1.4.6)
     linecache19 (0.5.11)
       ruby_core_source (>= 0.1.4)
     rspec (2.2.0)
@@ -30,6 +35,9 @@ GEM
       ruby-debug-base19 (>= 0.11.19)
     ruby_core_source (0.1.4)
       archive-tar-minitar (>= 0.5.2)
+    text-format (1.0.0)
+      text-hyphen (~> 1.0.0)
+    text-hyphen (1.0.0)
 
 PLATFORMS
   ruby
@@ -38,6 +46,6 @@ DEPENDENCIES
   autotest
   autotest-growl
   define_exception
-  highline
+  github
   rspec (>= 2)
   ruby-debug19

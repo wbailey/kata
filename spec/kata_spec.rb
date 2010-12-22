@@ -4,6 +4,7 @@ require 'kata'
 describe "Kata DSL" do
   before :each do
     @summary = 'sample summary'
+    @display_summary = "#{@summary} Kata"
   end
 
   context "kata" do
@@ -31,7 +32,7 @@ describe "Kata DSL" do
         }.should_not raise_exception
       end
 
-      output.should have_summary @summary
+      output.should have_summary @display_summary
     end
 
     it "displays the summary with block" do
@@ -42,7 +43,7 @@ describe "Kata DSL" do
         }.should_not raise_exception
       end
 
-      output.should have_summary @summary
+      output.should have_summary @display_summary
     end
   end
 
@@ -81,7 +82,7 @@ describe "Kata DSL" do
         }.should_not raise_exception
       end
 
-      output.should have_requirement @summary, @requirement
+      output.should have_requirement @display_summary, @requirement
     end
 
     it "displays the summary with block" do
@@ -94,7 +95,7 @@ describe "Kata DSL" do
         }.should_not raise_exception
       end
 
-      output.should have_requirement @summary, @requirement
+      output.should have_requirement @display_summary, @requirement
     end
   end
 
@@ -133,7 +134,7 @@ describe "Kata DSL" do
         }.should_not raise_exception
       end
 
-      output.should have_examples @summary, @requirement, @examples
+      output.should have_examples @display_summary, @requirement, @examples
     end
   end
 end
