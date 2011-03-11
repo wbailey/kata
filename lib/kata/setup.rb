@@ -47,7 +47,7 @@ module Kata
     end
 
     def repo_name= kata_name
-      @repo_name = (kata_name + '-' + Time.now.strftime('%Y-%m-%d-%H%M%S')).downcase
+      @repo_name = "#{kata_name.gsub(/( |-)\1?/, '_')}-#{Time.now.strftime('%Y-%m-%d-%H%M%S')}".downcase
     end
 
     def build_tree

@@ -14,7 +14,7 @@ Gem::Specification.new do |gem|
   
   gem.files = Dir['lib/**/*', 'README*', 'LICENSE*'] & `git ls-files -z`.split("\0")
   gem.test_files = Dir['spec/**/*'] & `git ls-files -z`.split("\0")
-  gem.executables = ['kata'] & `git ls-files -z`.split("\0")
+  gem.executables = ['kata']
 
   gem.add_development_dependency "bundler", ">= 1.0.0"
 end

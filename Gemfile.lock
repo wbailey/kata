@@ -9,7 +9,6 @@ GEM
     columnize (0.3.2)
     define_exception (0.0.3)
     diff-lcs (1.1.2)
-    highline (1.5.2)
     linecache19 (0.5.11)
       ruby_core_source (>= 0.1.4)
     rspec (2.2.0)
@@ -38,6 +37,5 @@ DEPENDENCIES
   autotest
   autotest-growl
   define_exception
-  highline
   rspec (>= 2)
   ruby-debug19
