@@ -1,0 +1,20 @@
+require 'kata'
+
+usage = 'kata [-s|--setup] file'
+
+if %w{-s --setup}.include? ARGV[0]
+  raise ArgumentError unless ARGV[1] && File.exists?(ARGV[1])
+
+  File.open(ARGV[1]).each do |line|
+    if line.match /^kata *\"([^\"]*)\" *do$/
+      name = $1
+      break
+    end
+  end
+
+  setup = Kata::Setup.new name
+  setup.build_tree
+  setup.create_repo
+else
+  load ARGV[0]
+end
