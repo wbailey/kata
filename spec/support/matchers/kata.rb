@@ -16,3 +16,11 @@ RSpec::Matchers.define :have_examples do |summary, requirement, examples|
     string.split(/completed \(Y|n\)/)[0].strip == "#{summary}\n   #{requirement}#{example_str}"
   end 
 end
+
+%w{url user token}.each do |method|
+  RSpec::Matchers.define "have_#{method}".to_sym do |expected|
+    match do |github|
+      github.send(method) == expected
+    end
+  end
+end

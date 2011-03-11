@@ -1,61 +1,104 @@
 require 'fileutils'
+require 'ostruct'
 
 module Kata
   class Setup
-    GITHUB_URL = 'http://github.com/api/v2/json/'
+    attr_accessor :kata_name
+    attr_reader :repo_name
 
-    attr_reader :kata_name
-
-    def create_repo(kata_name = 'kata')
+    def initialize kata_name = 'kata'
       self.kata_name = kata_name
-
-      raise StandardError unless git_installed?
-
-      user_string = "-u '#{github_user}/token:#{github_token}'"
-      repo_params = "-d 'name=#{kata_name}' -d 'description=code+kata+repo'"
-
-      %Q{curl #{user_string} #{repo_params} #{GITHUB_URL}/repos/create}
-
-      #%x{curl -u "wbailey/token:`git config --get github.token`" -d 'name=kata-#{Time.now}' -d 'description=code kata repo' 'http://github.com/api/v2/json/repos/create'}
-
-      #build_tree(kata_name)
-      #exec "cd #{repo}; git init; git commit -am 'starting kata'; git push origin master"
+      self.repo_name = kata_name
     end
 
-    private
+    def create_repo
+      # Setup from github configuration
+      raise Exception, 'Git not installed' unless system 'which git > /dev/null'
 
-    def kata_name= base_name
-      @kata_name ||= base_name + '-' + Time.now.strftime('%Y-%m-%d-%H-%M-%S')
+      github = OpenStruct.new :url => 'http://github.com/api/v2/json/'
+
+      github_user, shell_user = %x{git config --get github.user}.chomp, ENV['USER']
+
+      github.user = github_user.empty? ? shell_user : github_user
+
+      raise Exception, 'Unable to determine github user' if github.user.empty?
+
+      github.token = %x{git config --get github.token}.chomp
+
+      raise Exception, 'Unable to determine github api token' if github.token.empty?
+
+      user_string = "-u '#{github.user}/token:#{github.token}'"
+      repo_params = "-d 'name=#{repo_name}' -d 'description=code+kata+repo'"
+
+      # Create the repo on github
+      raise SystemCallError, 'unable to use curl to create repo on github' unless system <<-EOF
+        curl #{user_string} #{repo_params} #{github.url}repos/create
+      EOF
+
+      # publish to github
+      raise SystemCallError, 'unable to publish repo to github' unless system <<-EOF
+        cd #{repo_name};
+        git init;
+        git add README lib/ spec/;
+        git commit -m 'starting kata';
+        git remote add origin git@github.com:#{github.user}/#{repo_name}.git;
+        git push origin master
+      EOF
     end
 
-    def git_installed?
-      system 'which git > /dev/null'
+    def repo_name= kata_name
+      @repo_name = (kata_name + '-' + Time.now.strftime('%Y-%m-%d-%H%M%S')).downcase
     end
 
-    def github_token
-      @github_token ||= begin
-        token = %x{git config --get github.user}.chomp
-        raise Exception, 'Unable to determine github api token' if token.empty?
-      end
+    def build_tree
+      %W{#{repo_name}/lib #{repo_name}/spec/support/helpers #{repo_name}/spec/support/matchers}.each {|path| FileUtils.mkdir_p path}
+
+      use_kata_name = kata_name.gsub(/( |-)\1?/, '_').downcase
+      class_name = kata_name.split(/ |-|_/).map(&:capitalize).join
+
+      # create the README file so github is happy
+      File.open(File.join(repo_name, 'README'), 'w') {|f| f.write <<EOF}
+Leveling up my ruby awesomeness!
+EOF
+
+      # create the base class file
+      File.open(File.join(repo_name, 'lib', "#{use_kata_name}.rb"), 'w') {|f| f.write <<EOF}
+class #{class_name}
+end
+EOF
+
+      # create the spec_helper.rb file
+      File.open(File.join(repo_name, 'spec', 'spec_helper.rb'), 'w') {|f| f.write <<EOF}
+$: << '.' << File.join(File.dirname(__FILE__), '..', 'lib')
+
+require 'rspec'
+
+Dir[File.dirname(__FILE__) + "/support/**/*.rb"].each {|f| require f}
+EOF
+
+      # create a working spec file for the kata
+      File.open(File.join(repo_name, 'spec', "#{use_kata_name}_spec.rb"), 'w') {|f| f.write <<EOF}
+require 'spec_helper'
+require '#{use_kata_name}'
+
+class #{class_name}
+  describe "new" do
+    it "should instantiate" do
+      lambda {
+        #{class_name}.new
+      }.should_not raise_exception
     end
-
-    def github_user
-      @github_user ||= begin
-        github_user = %x{git config --get github.user}.chomp
-        shell_user = ENV['USER']
-
-        raise Exception, 'Unable to determine github user' if github_user.empty? && shell_user.empty?
-
-        github_user || shell_user
-      end
-    end
-    
-    def build_tree kata_name
-      %W{#{repo}/lib #{repo}/spec/support/helpers #{repo}/spec/support/matchers}.each {|path| FileUtils.mkdir_p path}
-    end
-
-    def repo
-      @repo ||= kata_name + Time.now.strftime('%Y-%m-%d-%H:%M')
+  end
+end
+EOF
+      # stub out a custom matchers file
+      File.open(File.join(repo_name, 'spec', 'support', 'matchers', "#{use_kata_name}.rb"), 'w') {|f| f.write <<EOF}
+RSpec::Matchers.define :your_method do |expected|
+  match do |your_match|
+    #your_match.method_on_object_to_execute == expected
+  end
+end
+EOF
     end
   end
 end
