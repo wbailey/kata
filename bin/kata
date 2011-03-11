@@ -18,5 +18,10 @@ if %w{-s --setup}.include? ARGV[0]
   setup.build_tree
   setup.create_repo
 else
-  load ARGV[0]
+  begin
+    load ARGV[0]
+  rescue Exception
+    puts usage
+    exit 1
+  end
 end
