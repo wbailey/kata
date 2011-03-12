@@ -1,3 +1,16 @@
 sample_kata.rb
 sample.rb
 pkg/*
+bin/autospec
+bin/autotest
+bin/htmldiff
+bin/ldiff
+bin/minitar
+bin/multigem
+bin/multiruby
+bin/multiruby_setup
+bin/rake
+bin/rdebug
+bin/rspec
+bin/unit_diff
+bin/zentest
