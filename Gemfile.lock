@@ -11,6 +11,7 @@ GEM
     diff-lcs (1.1.2)
     linecache19 (0.5.11)
       ruby_core_source (>= 0.1.4)
+    rake (0.8.7)
     rspec (2.2.0)
       rspec-core (~> 2.2)
       rspec-expectations (~> 2.2)
@@ -37,5 +38,6 @@ DEPENDENCIES
   autotest
   autotest-growl
   define_exception
+  rake
   rspec (>= 2)
   ruby-debug19
