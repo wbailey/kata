@@ -1,27 +1,47 @@
 require 'kata'
 
-usage = 'kata [-s|--setup] file'
+usage = <<EOF
+NAME
+    kata - Ruby kata management
 
-if %w{-s --setup}.include? ARGV[0]
-  raise ArgumentError unless ARGV[1] && File.exists?(ARGV[1])
+SYNOPSIS
+    kata [COMMAND] [ARGS]
 
-  name = nil
+DESCRIPTION
+    The kata gem allows one to manage their personal development in the
+    practice of writing code through repitition.
 
-  File.open(ARGV[1]).each do |line|
-    if line.match /^kata *\"([^\"]*)\" *do$/
-      name = $1
-      break
-    end
+PRIMARY COMMANDS
+    kata setup file
+        Setup a github repo for the kata development session
+
+    kata take file
+        Start a kata development session
+EOF
+
+begin
+  case ARGV[0].downcase.to_sym
+    when :setup
+      raise ArgumentError unless ARGV[1] && File.exists?(ARGV[1])
+
+      name = nil
+
+      File.open(ARGV[1]).each do |line|
+        if line.match /^kata *\"([^\"]*)\" *do$/
+          name = $1
+          break
+        end
+      end
+
+      setup = Kata::Setup.new name
+      setup.build_tree
+      setup.create_repo
+    when :take
+      load ARGV[1]
+    else
+      raise ArgumentError
   end
-
-  setup = Kata::Setup.new name
-  setup.build_tree
-  setup.create_repo
-else
-  begin
-    load ARGV[0]
-  rescue Exception
-    puts usage
-    exit 1
-  end
+rescue Exception
+  puts usage
+  exit 1
 end
