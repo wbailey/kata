@@ -31,6 +31,9 @@ module Kata
       repo_params = "-d 'name=#{repo_name}' -d 'description=code+kata+repo'"
 
       # Create the repo on github
+      puts <<-EOF
+        curl #{user_string} #{repo_params} #{github.url}repos/create
+      EOF
       raise SystemCallError, 'unable to use curl to create repo on github' unless system <<-EOF
         curl #{user_string} #{repo_params} #{github.url}repos/create
       EOF

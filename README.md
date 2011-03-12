@@ -6,15 +6,6 @@ to this point the only location is through mail archives and random blog posts.
 The purpose of this gem is to provide a series of tools that make it easy to
 author, setup and administer a kata.
 
-This gem provides a DSL to 
-author the kata and administer it as a test providing feedback for evaluation.
-
-
-This gem also gives you the ability to setup a minimal github repo specific to
-the time you take the kata.  This allows you to review your commit history as
-well as record your katas so that you can evaluate improvement over time by
-comparing recent solutions to older ones.
-
 ### Authoring a Kata ###
 
 It is as simple as installing this gem and creating a ruby file much like
@@ -31,9 +22,6 @@ an RSpec test as illustrated below:
         example "invoking with 1 and 2 and 3 and 4 and 5 returns 15"
       end
     end
-
-This is a very simple DSL that consists of 3 methods that really doesn't really
-need any more explanation than the above example.
 
 ### Setting up a Kata ###
 
