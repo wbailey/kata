@@ -9,6 +9,7 @@ GEM
     columnize (0.3.2)
     define_exception (0.0.3)
     diff-lcs (1.1.2)
+    kramdown (0.13.2)
     linecache19 (0.5.11)
       ruby_core_source (>= 0.1.4)
     rake (0.8.7)
@@ -38,6 +39,7 @@ DEPENDENCIES
   autotest
   autotest-growl
   define_exception
+  kramdown
   rake
   rspec (>= 2)
   ruby-debug19
