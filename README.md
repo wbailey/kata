@@ -11,7 +11,7 @@ author, setup and administer a kata.
 Authoring a kata is as simple as installing this gem and creating a ruby file
 much like an RSpec test as illustrated below:
 
-    kata "My First" do
+    kata "String Calculator" do
       requirement "Create an add method that will accept two digits as arguments" do
         example "invoking with 1 and 2 returns 3"
         example "invoking with 5 only returns 5"
@@ -21,14 +21,14 @@ much like an RSpec test as illustrated below:
         example "invoking with 1 and 2 and 3 returns 6"
         example "invoking with 1 and 2 and 3 and 4 and 5 returns 15"
       end
-      context "outside" do
-        requirement "first requirment" do
-          detail "has detail"
-          example "1+1  = 2"
+      context "sub" do
+        requirement "Create a sub method that will accept two digits as arguments" do
+          detail "Negative numbers are not allowed"
+          detail "Digits must range from 0-9"
+          example "9-6 = 3"
         end
-        requirement "second requirment" do
-          detail "has detail"
-          example "1+1  = 2"
+        requirement "Modify the sub method to access multple digits as arguments" do
+          example "9-6-3 = 0"
         end
       end
      end
