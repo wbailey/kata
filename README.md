@@ -44,9 +44,11 @@ illustrated below:
 
 1. The **kata()** method sets up the test to administer and starts the clock running.
 It takes 2 arguments:
-* *name* - The name of the kata that will be displayed when taking it as well as
-  being used in creating the parent directory of the github repo during setup.
-* *&block* - A ruby block that includes calls to *context()* or *requirement()*
+
+  * *name* - The name of the kata that will be displayed when taking it as well as
+    being used in creating the parent directory of the github repo during setup.
+
+  * *&block* - A ruby block that includes calls to *context()* or *requirement()*
 
 2. The **context()** method allows for grouping of requirements with 2 arguments:
 * *string* - A description of the provided context
