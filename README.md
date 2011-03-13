@@ -50,24 +50,29 @@ It takes 2 arguments:
     *&block* - A ruby block that includes calls to *context()* or *requirement()*
 
 2. The **context()** method allows for grouping of requirements with 2 arguments:
-* *string* - A description of the provided context
-* *&block* - A ruby block consisting of a call to *requirement()*
+
+    * *string* - A description of the provided context
+    * *&block* - A ruby block consisting of a call to *requirement()*
+
 this method call is optional and not required to define a kata.
 
 3. The **requirement()** method is the heart of a kata as it is used to provide the
 business rules that the code should provide solutions to.  It follows the same
 pattern of the other methods with 2 arguments:
-* *string* - A description of the requirement that the code implementing the
-  kata should meet
-* *&block* - A ruby block consisting of calls to *detail()* or *example()*
+
+    * *string* - A description of the requirement that the code implementing the
+      kata should meet
+    * *&block* - A ruby block consisting of calls to *detail()* or *example()*
 
 4. The **detail()** method takes a single argument allowing for further defintion
 of a requirement.  This method can be called repeatedly in a block.
-* *string* - A description of the detail of requirement
+
+    * *string* - A description of the detail of requirement
 
 5. The **example()** method takes a single argument allowing for illustration of
 examples of the requirement in practice
-* *string* - An example that will help illustrate the requirement in practice
+
+    * *string* - An example that will help illustrate the requirement in practice
 
 ### Setting up a Kata ###
 
