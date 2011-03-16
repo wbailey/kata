@@ -30,22 +30,27 @@ module Kata
       user_string = "-u '#{github.user}/token:#{github.token}'"
       repo_params = "-d 'name=#{repo_name}' -d 'description=code+kata+repo'"
 
-      # Create the repo on github
-      puts <<-EOF
-        curl #{user_string} #{repo_params} #{github.url}repos/create
-      EOF
+      Create the repo on github
       raise SystemCallError, 'unable to use curl to create repo on github' unless system <<-EOF
-        curl #{user_string} #{repo_params} #{github.url}repos/create
+        echo -n 'Creating github repo...';
+        curl -s #{user_string} #{repo_params} #{github.url}repos/create 2> /dev/null;
+        echo 'complete'
       EOF
 
       # publish to github
       raise SystemCallError, 'unable to publish repo to github' unless system <<-EOF
+        echo -n 'Initializing repo...';
         cd #{repo_name};
-        git init;
-        git add README lib/ spec/;
-        git commit -m 'starting kata';
-        git remote add origin git@github.com:#{github.user}/#{repo_name}.git;
-        git push origin master
+        git init 2> /dev/null;
+        git add README lib/ spec/ 2> /dev/null;
+        git commit -m 'starting kata' 2> /dev/null;
+        echo 'complete'
+        echo -n 'adding origin...'
+        git remote add origin git@github.com:#{github.user}/#{repo_name}.git 2> /dev/null;
+        echo 'complete'
+        echo -n 'pushing...'
+        git push origin master 2> /dev/null
+        echo 'complete'
       EOF
     end
 
