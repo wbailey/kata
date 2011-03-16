@@ -30,28 +30,26 @@ module Kata
       user_string = "-u '#{github.user}/token:#{github.token}'"
       repo_params = "-d 'name=#{repo_name}' -d 'description=code+kata+repo'"
 
-      Create the repo on github
+      # Create the repo on github
+      print 'Creating github repo...'
       raise SystemCallError, 'unable to use curl to create repo on github' unless system <<-EOF
-        echo -n 'Creating github repo...';
-        curl -s #{user_string} #{repo_params} #{github.url}repos/create 2> /dev/null;
-        echo 'complete'
+        curl -s #{user_string} #{repo_params} #{github.url}repos/create 2>&1 > /dev/null;
       EOF
+      puts 'complete'
 
       # publish to github
+
+      print 'creating files for repo and initializing...'
       raise SystemCallError, 'unable to publish repo to github' unless system <<-EOF
-        echo -n 'Initializing repo...';
         cd #{repo_name};
-        git init 2> /dev/null;
-        git add README lib/ spec/ 2> /dev/null;
-        git commit -m 'starting kata' 2> /dev/null;
-        echo 'complete'
-        echo -n 'adding origin...'
-        git remote add origin git@github.com:#{github.user}/#{repo_name}.git 2> /dev/null;
-        echo 'complete'
-        echo -n 'pushing...'
+        git init 2>&1 > /dev/null;
+        git add README lib/ spec/ 2>&1 > /dev/null;
+        git commit -m 'starting kata' 2>&1 > /dev/null;
+        git remote add origin git@github.com:#{github.user}/#{repo_name}.git 2>&1 > /dev/null;
         git push origin master 2> /dev/null
-        echo 'complete'
       EOF
+      puts 'done'
+      puts "You can now change directories to #{repo_name} and take your kata"
     end
 
     def repo_name= kata_name
