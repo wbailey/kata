@@ -80,23 +80,11 @@ To setup a minimal github repo you must first already have a github account and
 git installed on your machine.  To build a kata repo simply use the setup
 command:
 
-    wesbailey@feynman:~/my-katas> kata setup sample.rb
-    {"repository":{"has_downloads":true,"url":". ... 011-03-11-165513/.git/
-    [master (root-commit) 804036f] starting kata
-     5 files changed, 25 insertions(+), 0 deletions(-)
-     create mode 100644 README
-     create mode 100644 lib/my_first.rb
-     create mode 100644 spec/my_first_spec.rb
-     create mode 100644 spec/spec_helper.rb
-     create mode 100644 spec/support/matchers/my_first.rb
-    Counting objects: 11, done.
-    Delta compression using up to 4 threads.
-    Compressing objects: 100% (6/6), done.
-    Writing objects: 100% (11/11), 973 bytes, done.
-    Total 11 (delta 0), reused 0 (delta 0)
-    To git@github.com:wbailey/my_first-2011-03-11-165513.git
-     * [new branch]      master -> master
-
+    wesbailey@feynman:~/scratch-1.9.0> kata setup sample.rb
+    Creating github repo...complete
+    creating files for repo and initializing...done
+    You can now change directories to my_first-2011-03-15-235437 and take your kata
+    
 ### Administering a Kata ###
 
 Running the kata from the command line yields:
