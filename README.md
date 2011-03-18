@@ -194,6 +194,9 @@ displayed:
     Congratulations!
     - Create an add method that will accept two digits as arguments            00:02:02
     - Modify the add method to access multple digits as arguments              00:00:45
+    ----------------------------------------------------------------------     --------
+    Total Time taking My First kata:                                           00:02:47
+    
 
 ### Installing Kata ###
 
