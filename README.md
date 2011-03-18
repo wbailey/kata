@@ -162,7 +162,7 @@ With rspec configured you can also run autotest if you have it installed.
 
 Running the kata from the command line yields:
 
-    wesbailey@feynman:~/my-katas> kata stringcalculator.rb
+    wesbailey@feynman:~/katas> kata stringcalculator.rb
     String Calculator Kata
        Create an add method that will accept two digits as arguments
           - invoking with 1 and 2 returns 3
