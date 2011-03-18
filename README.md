@@ -1,12 +1,14 @@
 ## Kata ##
 
-A kata is defined as an exercise in programming which helps you hone your skills
-through practice and repetition.  Finding katas to work on is a challenge and
-to this point the only location was through mail archives and random blog posts.
-The purpose of this gem is to provide a series of tools that make it easy to
-author, setup and administer a kata.
+A kata is defined as an exercise in programming which helps hone your skills
+through practice and repetition. Authoring katas is done in blogs but you can't
+really test yourself. This gem provides a DSL to author the kata and administer
+it as a test providing feedback for evaluation.  It also provides basic github
+repo setup so that you can chart solution progress over time.
 
 ### Authoring a Kata ###
+
+The inspiration for this gem came from my friend Nick Hengeveld 
 
 Authoring a kata is as simple as installing this gem and creating a ruby file
 much like an RSpec test as illustrated below:
