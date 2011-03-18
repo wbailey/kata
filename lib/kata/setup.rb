@@ -72,6 +72,10 @@ EOF
 class #{class_name}
 end
 EOF
+      # create the .rspec file
+      File.open(File.join(repo_name, '.rspec'), 'w') {|f| f.write <<EOF}
+--color --format d
+EOF
 
       # create the spec_helper.rb file
       File.open(File.join(repo_name, 'spec', 'spec_helper.rb'), 'w') {|f| f.write <<EOF}
@@ -87,7 +91,7 @@ EOF
 require 'spec_helper'
 require '#{use_kata_name}'
 
-class #{class_name}
+describe #{class_name} do
   describe "new" do
     it "should instantiate" do
       lambda {

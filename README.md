@@ -83,7 +83,80 @@ command:
     wesbailey@feynman:~/scratch-1.9.0> kata setup sample.rb
     Creating github repo...complete
     creating files for repo and initializing...done
-    You can now change directories to my_first-2011-03-15-235437 and take your kata
+    You can now change directories to my_first-2011-03-17-225948 and take your kata
+
+Looking in that directory you can see what files have been created:
+
+    .rspec
+    README
+    lib
+    lib/my_first.rb
+    spec
+    spec/my_first_spec.rb
+    spec/spec_helper.rb
+    spec/support
+    spec/support/helpers
+    spec/support/matchers
+    spec/support/matchers/my_first.rb
+
+For the files that are generated you will see the following default contents:
+
+*.rspec*
+
+    --color --format d
+
+*README*
+
+    Leveling up my ruby awesomeness!
+
+*lib/my_first.rb*
+
+    class MyFirst
+    end
+
+*spec/my_first_spec.rb*
+
+    require 'spec_helper'
+    require 'my_first'
+
+    describe MyFirst do
+      describe "new" do
+        it "should instantiate" do
+          lambda {
+            MyFirst.new
+          }.should_not raise_exception
+        end
+      end
+    end
+
+*spec/spec_helper.rb*
+
+    $: << '.' << File.join(File.dirname(__FILE__), '..', 'lib')
+
+    require 'rspec'
+
+    Dir[File.dirname(__FILE__) + "/support/**/*.rb"].each {|f| require f}
+
+*spec/support/matchers/my_first.rb*
+
+    RSpec::Matchers.define :your_method do |expected|
+      match do |your_match|
+        #your_match.method_on_object_to_execute == expected
+      end
+    end
+
+Following TDD the first test has been written and passes:
+
+    wesbailey@feynman:~/katas/my_first-2011-03-17-225948> rspec spec/
+
+    MyFirst
+      new
+        should instantiate
+
+    Finished in 0.0005 seconds
+    1 example, 0 failures
+
+With rspec configured you can also run autotest if you have it installed.
     
 ### Administering a Kata ###
 
