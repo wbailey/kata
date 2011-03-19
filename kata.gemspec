@@ -1,4 +1,4 @@
-$: << File.join(__FILE__, 'lib')
+$: << File.join(__FILE__, '..', 'lib')
 
 require 'date'
 require 'kata/version'
