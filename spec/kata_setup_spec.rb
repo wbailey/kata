@@ -24,6 +24,7 @@ module Kata
 
         Dir[File.join(subject.repo_name, '**', '*.rb')].size.should == 4
         Dir[File.join(subject.repo_name, 'README')].size.should == 1
+        Dir[File.join(subject.repo_name, '.rspec')].size.should == 1
       end
     end
   end
