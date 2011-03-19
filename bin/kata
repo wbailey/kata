@@ -1,6 +1,7 @@
 require 'kata'
 
-usage = <<EOF
+def usage
+  puts(<<EOF); exit 1
 NAME
     kata - Ruby kata management
 
@@ -17,31 +18,41 @@ PRIMARY COMMANDS
 
     kata take file
         Start a kata development session
+
+    kata version
+        Current installed version number
+
+    kata help
+        This usage message
 EOF
+end
 
 begin
-  case ARGV[0].downcase.to_sym
-    when :setup
-      raise ArgumentError unless ARGV[1] && File.exists?(ARGV[1])
+  argument = ARGV[0].downcase.to_sym
+rescue 
+  usage
+end
 
-      name = nil
+case argument
+  when :setup
+    raise ArgumentError unless ARGV[1] && File.exists?(ARGV[1])
 
-      File.open(ARGV[1]).each do |line|
-        if line.match /^kata *\"([^\"]*)\" *do$/
-          name = $1
-          break
-        end
+    name = nil
+
+    File.open(ARGV[1]).each do |line|
+      if line.match /^kata *\"([^\"]*)\" *do$/
+        name = $1
+        break
       end
+    end
 
-      setup = Kata::Setup.new name
-      setup.build_tree
-      setup.create_repo
-    when :take
-      load ARGV[1]
-    else
-      raise ArgumentError
-  end
-rescue Exception
-  puts usage
-  exit 1
+    setup = Kata::Setup.new name
+    setup.build_tree
+    setup.create_repo
+  when :take
+    load ARGV[1]
+  when :version
+    puts "kata #{Kata::VERSION}"
+  else
+    usage
 end

@@ -13,14 +13,14 @@ GEM
     linecache19 (0.5.11)
       ruby_core_source (>= 0.1.4)
     rake (0.8.7)
-    rspec (2.2.0)
-      rspec-core (~> 2.2)
-      rspec-expectations (~> 2.2)
-      rspec-mocks (~> 2.2)
-    rspec-core (2.2.1)
-    rspec-expectations (2.2.0)
+    rspec (2.5.0)
+      rspec-core (~> 2.5.0)
+      rspec-expectations (~> 2.5.0)
+      rspec-mocks (~> 2.5.0)
+    rspec-core (2.5.1)
+    rspec-expectations (2.5.0)
       diff-lcs (~> 1.1.2)
-    rspec-mocks (2.2.0)
+    rspec-mocks (2.5.0)
     ruby-debug-base19 (0.11.24)
       columnize (>= 0.3.1)
       linecache19 (>= 0.5.11)
@@ -41,5 +41,5 @@ DEPENDENCIES
   define_exception
   kramdown
   rake
-  rspec (>= 2)
+  rspec (>= 2.4)
   ruby-debug19

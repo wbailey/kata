@@ -1,8 +1,11 @@
+$: << File.join(__FILE__, 'lib')
+
 require 'date'
+require 'kata/version'
 
 Gem::Specification.new do |gem|
   gem.name    = 'kata'
-  gem.version = '1.0.5'
+  gem.version = Kata::VERSION
   gem.date    = Date.today.to_s
   
   gem.summary = 'A code kata DSL'
