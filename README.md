@@ -167,9 +167,10 @@ Running the kata from the command line yields:
     wesbailey@feynman:~/katas> kata take stringcalculator.rb
     String Calculator Kata
        Create an add method that will accept two digits as arguments
-          - invoking with 1 and 2 returns 3
-          - invoking with 1 returns 1
-          - invoking with no arguments returns 0
+          - detail: invoking with 1 and 2 returns 3
+          - detail: invoking with 1 returns 1
+          - detail: invoking with no arguments returns 0
+          - example: "1,2" sums to 3
 
     continue (Y|n): 
 
@@ -178,8 +179,8 @@ requirement is completed.  Once it is then enter and the next requirement will
 appear as illustrated below:
 
        Modify the add method to access multple digits as arguments
-          - invoking with 1 and 2 and 3 returns 6
-          - invoking with 1 and 2 and 3 and 4 and 5 returns 15
+          - example: "1,2,3" sums to 6
+          - example: "1,2,3,4,5" sums to 15
 
     continue (Y|n): 
 
