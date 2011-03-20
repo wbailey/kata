@@ -1,5 +1,6 @@
 require 'spec_helper'
 require 'kata/setup'
+require 'fileutils'
 
 module Kata
   describe Setup do
@@ -25,6 +26,8 @@ module Kata
         Dir[File.join(subject.repo_name, '**', '*.rb')].size.should == 4
         Dir[File.join(subject.repo_name, 'README')].size.should == 1
         Dir[File.join(subject.repo_name, '.rspec')].size.should == 1
+
+        FileUtils.remove_entry_secure subject.repo_name
       end
     end
   end

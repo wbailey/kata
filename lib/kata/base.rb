@@ -32,11 +32,11 @@ module Kata
     end
 
     def example txt
-      puts indent + '- ' + txt
+      puts indent + '- ' + "example: #{txt}"
     end
 
     def detail txt
-      puts indent + '- ' + txt
+      puts indent + '- ' + "detail: #{txt}"
     end
 
     private

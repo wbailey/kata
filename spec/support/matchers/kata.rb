@@ -11,7 +11,7 @@ RSpec::Matchers.define :have_requirement do |summary, requirement|
 end
 
 RSpec::Matchers.define :have_examples do |summary, requirement, examples|
-  example_str = examples.unshift('').join("\n      - ")
+  example_str = examples.unshift('').join("\n      - example: ")
   match do |string|
     string.split(/completed \(Y|n\)/)[0].strip == "#{summary}\n   #{requirement}#{example_str}"
   end 
