@@ -1,4 +1,4 @@
-## Kata ##
+# Kata
 
 A kata is defined as an exercise in programming which helps hone your skills
 through practice and repetition. Authoring katas is done in blogs but you can't
@@ -6,7 +6,7 @@ really test yourself. This gem provides a DSL to author the kata and administer
 it as a test providing feedback for evaluation.  It also provides basic github
 repo setup so that you can chart solution progress over time.
 
-### Authoring a Kata ###
+## Authoring a Kata
 
 The inspiration for this gem came from my friend Nick Hengeveld 
 
@@ -76,7 +76,7 @@ examples of the requirement in practice
 
     * *string* - An example that will help illustrate the requirement in practice
 
-### Setting up a Kata ###
+## Setting up a Kata
 
 To setup a minimal github repo you must first already have a github account and
 git installed on your machine.  To build a kata repo simply use the setup
@@ -160,7 +160,7 @@ Following TDD the first test has been written and passes:
 
 With rspec configured you can also run autotest if you have it installed.
     
-### Administering a Kata ###
+## Administering a Kata
 
 Running the kata from the command line yields:
 
@@ -187,7 +187,7 @@ appear as illustrated below:
 The process continues until all of the requirements have been coded.  The
 kata will keep track of the ammount of time it takes for you to complete coding.
 
-### Completing the Kata ###
+## Completing the Kata
 
 After completing the requirements of the kata continue and the report is
 displayed:
@@ -199,9 +199,13 @@ displayed:
     Total Time taking Calculator kata:                                         00:02:47
     
 
-### Installing Kata ###
+## Installing Kata
 
 It is up on rubygems.org so add it to your bundle or do it the old fashioned
 way with:
 
     gem install kata
+
+## Contributions
+
+Wes Bailey ([Exposing Gotchas](http://exposinggotchas.blogspot.com/ "Exposing Gotchas"))
