@@ -48,7 +48,7 @@ case argument
 
     setup = Kata::Setup.new name
     setup.build_tree
-    setup.create_repo
+    setup.create_repo rescue Exception
   when :take
     load ARGV[1]
   when :version
