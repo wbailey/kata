@@ -39,6 +39,10 @@ module Kata
       puts indent + '- ' + "detail: #{txt}"
     end
 
+    def method_missing(method_name)
+      raise ArgumentError, "Kata does not understand the #{method_name} construct"
+    end
+
     private
 
     def ask(prompt, default)
