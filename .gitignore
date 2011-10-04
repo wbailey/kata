@@ -1,6 +1,7 @@
 sample_kata.rb
 sample.rb
 pkg/*
+bin/*
 bin/autospec
 bin/autotest
 bin/htmldiff
