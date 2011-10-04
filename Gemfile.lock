@@ -1,6 +1,11 @@
 GEM
   remote: http://rubygems.org/
   specs:
+    ParseTree (3.0.7)
+      RubyInline (>= 3.7.0)
+      sexp_processor (>= 3.0.0)
+    RubyInline (3.9.0)
+      ZenTest (~> 4.3)
     ZenTest (4.4.2)
     archive-tar-minitar (0.5.2)
     autotest (4.4.6)
@@ -9,6 +14,16 @@ GEM
     columnize (0.3.2)
     define_exception (0.0.3)
     diff-lcs (1.1.2)
+    flay (1.4.2)
+      ruby_parser (~> 2.0)
+      sexp_processor (~> 3.0)
+    flog (2.5.1)
+      ruby_parser (~> 2.0)
+      sexp_processor (~> 3.0)
+    heckle (1.4.3)
+      ParseTree (>= 2.0.0)
+      ZenTest (>= 3.5.2)
+      ruby2ruby (>= 1.1.6)
     kramdown (0.13.2)
     linecache19 (0.5.11)
       ruby_core_source (>= 0.1.4)
@@ -29,8 +44,14 @@ GEM
       columnize (>= 0.3.1)
       linecache19 (>= 0.5.11)
       ruby-debug-base19 (>= 0.11.19)
+    ruby2ruby (1.2.5)
+      ruby_parser (~> 2.0)
+      sexp_processor (~> 3.0)
     ruby_core_source (0.1.4)
       archive-tar-minitar (>= 0.5.2)
+    ruby_parser (2.0.6)
+      sexp_processor (~> 3.0)
+    sexp_processor (3.0.5)
 
 PLATFORMS
   ruby
@@ -39,6 +60,9 @@ DEPENDENCIES
   autotest
   autotest-growl
   define_exception
+  flay
+  flog
+  heckle
   kramdown
   rake
   rspec (>= 2.4)

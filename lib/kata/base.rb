@@ -2,19 +2,19 @@ module Kata
   module Base
     @@times = []
 
-    def kata txt, lib = nil
+    def kata(txt, lib = nil)
       @kata_name = txt
       puts "#{@kata_name} Kata"
       yield if block_given?
       complete
     end
 
-    def context txt
+    def context(txt)
       puts indent + txt
       yield if block_given?
     end
 
-    def requirement txt
+    def requirement(txt)
       puts indent + txt
 
       start = Time.now
@@ -31,22 +31,22 @@ module Kata
       complete false if rsp.downcase == 'n'
     end
 
-    def example txt
+    def example(txt)
       puts indent + '- ' + "example: #{txt}"
     end
 
-    def detail txt
+    def detail(txt)
       puts indent + '- ' + "detail: #{txt}"
     end
 
     private
 
-    def ask prompt, default
+    def ask(prompt, default)
       print prompt
       $stdin.gets.chomp || default
     end
 
-    def complete status = true
+    def complete(status = true)
       if @@times.size > 0
         title = status ? 'Congratulations!' : 'You completed the following:'
 
@@ -55,10 +55,16 @@ module Kata
           [use/3600, use/60 % 60, use % 60].map {|v| v.to_s.rjust(2,'0')}.join(':')
         end
 
-        puts "\n\n#{title}"
-        puts @@times.inject('') {|s,p| s << "- #{p[:title][0,70].ljust(70, ' ')} #{formatter.call(p[:time]).rjust(10,' ')}\n"}
-        puts '-' * 70 + ' ' * 5 + '-' * 8
-        puts "Total Time taking #{@kata_name} kata: ".ljust(70, ' ') + ' ' * 5 + formatter.call(@@times.inject(0) {|s,h| s += h[:time]})
+        File.open('results.txt', 'w') do |file|
+          file.puts "\n\n#{title}"
+          file.puts @@times.inject('') {|s,p| s << "- #{p[:title][0,70].ljust(70, ' ')} #{formatter.call(p[:time]).rjust(10,' ')}\n"}
+          file.puts '-' * 70 + ' ' * 5 + '-' * 8
+          file.puts "Total Time taking #{@kata_name} kata: ".ljust(70, ' ') + ' ' * 5 + formatter.call(@@times.inject(0) {|s,h| s += h[:time]})
+        end
+
+        File.open('results.txt', 'r') do |file|
+          puts file.readline
+        end
       end
 
       exit 1 unless status

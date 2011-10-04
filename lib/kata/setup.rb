@@ -6,7 +6,7 @@ module Kata
     attr_accessor :kata_name
     attr_reader :repo_name
 
-    def initialize kata_name = 'kata'
+    def initialize(kata_name = 'kata')
       self.kata_name = kata_name
       self.repo_name = kata_name
     end
@@ -52,7 +52,7 @@ module Kata
       puts "You can now change directories to #{repo_name} and take your kata"
     end
 
-    def repo_name= kata_name
+    def repo_name=(kata_name)
       @repo_name = "#{kata_name.gsub(/( |-)\1?/, '_')}-#{Time.now.strftime('%Y-%m-%d-%H%M%S')}".downcase
     end
 
