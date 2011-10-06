@@ -62,9 +62,7 @@ module Kata
           file.puts "Total Time taking #{@kata_name} kata: ".ljust(70, ' ') + ' ' * 5 + formatter.call(@@times.inject(0) {|s,h| s += h[:time]})
         end
 
-        File.open('results.txt', 'r') do |file|
-          puts file.readline
-        end
+        File.open('results.txt', 'r').each { |line| puts line}
       end
 
       exit 1 unless status
