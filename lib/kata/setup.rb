@@ -42,8 +42,9 @@ module Kata
       print 'creating files for repo and initializing...'
       raise SystemCallError, 'unable to publish repo to github' unless system <<-EOF
         cd #{repo_name};
+        touch results.txt
         git init 2>&1 > /dev/null;
-        git add README lib/ spec/ 2>&1 > /dev/null;
+        git add README .rspec results.txt lib/ spec/ 2>&1 > /dev/null;
         git commit -m 'starting kata' 2>&1 > /dev/null;
         git remote add origin git@github.com:#{github.user}/#{repo_name}.git 2>&1 > /dev/null;
         git push origin master 2> /dev/null
