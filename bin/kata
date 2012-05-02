@@ -1,7 +1,10 @@
+#!/bin/env ruby
 require 'kata'
+require 'ostruct'
+require 'optparse'
 
 def usage
-  puts(<<EOF); exit 1
+  return <<EOF
 NAME
     kata - Ruby kata management
 
@@ -13,8 +16,9 @@ DESCRIPTION
     practice of writing code through repitition.
 
 PRIMARY COMMANDS
-    kata setup file
-        Setup a github repo for the kata development session
+    kata setup file [repository]
+        Setup a github repo for the kata development session.  Use a repository
+        if it is provided and do not create a new one
 
     kata take file
         Start a kata development session
@@ -27,19 +31,30 @@ PRIMARY COMMANDS
 EOF
 end
 
-begin
-  argument = ARGV[0].downcase.to_sym
-rescue 
-  usage
-end
+options = OpenStruct.new(
+  {
+    :repo => true,
+  }
+)
 
-case argument
+OptionParser.new do |opts|
+  opts.banner = usage
+
+  opts.on('-n', '--no-repo', 'Do not create a new repository') do
+    options.repo = false
+  end
+end.parse!
+
+options.action = ARGV.shift.downcase.to_sym
+options.file = ARGV.shift
+
+case options.action
   when :setup
-    raise ArgumentError unless ARGV[1] && File.exists?(ARGV[1])
+    raise ArgumentError unless options.file && File.exists?(options.file)
 
     name = nil
 
-    File.open(ARGV[1]).each do |line|
+    File.open(options.file).each do |line|
       if line.match /^kata *\"([^\"]*)\" *do$/
         name = $1
         break
@@ -48,11 +63,11 @@ case argument
 
     setup = Kata::Setup.new name
     setup.build_tree
-    setup.create_repo rescue Exception
+    setup.create_repo(options) rescue Exception
   when :take
-    load ARGV[1]
+    load options.file
   when :version
     puts "kata #{Kata::VERSION}"
   else
-    usage
+    puts usage
 end

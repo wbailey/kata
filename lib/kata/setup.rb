@@ -11,7 +11,7 @@ module Kata
       self.repo_name = kata_name
     end
 
-    def create_repo
+    def create_repo options
       # Setup from github configuration
       raise Exception, 'Git not installed' unless system 'which git > /dev/null'
 
@@ -31,11 +31,13 @@ module Kata
       repo_params = "-d 'name=#{repo_name}' -d 'description=code+kata+repo'"
 
       # Create the repo on github
-      print 'Creating github repo...'
-      raise SystemCallError, 'unable to use curl to create repo on github' unless system <<-EOF
-        curl -s #{user_string} #{repo_params} #{github.url}repos/create 2>&1 > /dev/null;
-      EOF
-      puts 'complete'
+      if options.repo
+        print 'Creating github repo...'
+        raise SystemCallError, 'unable to use curl to create repo on github' unless system <<-EOF
+          curl -s #{user_string} #{repo_params} #{github.url}repos/create 2>&1 > /dev/null;
+        EOF
+        puts 'complete'
+      end
 
       # publish to github
 
@@ -95,7 +97,7 @@ require '#{use_kata_name}'
 describe #{class_name} do
   describe "new" do
     it "should instantiate" do
-      lambda {
+      expect {
         #{class_name}.new
       }.should_not raise_exception
     end
