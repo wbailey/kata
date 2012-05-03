@@ -42,15 +42,20 @@ module Kata
       # publish to github
 
       print 'creating files for repo and initializing...'
-      raise SystemCallError, 'unable to publish repo to github' unless system <<-EOF
-        cd #{repo_name};
-        touch results.txt
-        git init 2>&1 > /dev/null;
-        git add README .rspec results.txt lib/ spec/ 2>&1 > /dev/null;
-        git commit -m 'starting kata' 2>&1 > /dev/null;
-        git remote add origin git@github.com:#{github.user}/#{repo_name}.git 2>&1 > /dev/null;
-        git push origin master 2> /dev/null
-      EOF
+
+      cmd = "cd #{repo_name};"
+      if options.repo
+        cmd << "git init 2>&1 > /dev/null;"
+        cmd << "git add README .rspec lib/ spec/ 2>&1 > /dev/null;"
+      else
+        cmd << "git add #{ENV['PWD']}/#{repo_name};"
+      end
+      cmd << "git commit -m 'starting kata' 2>&1 > /dev/null;"
+      cmd << "git remote add origin git@github.com:#{github.user}/#{repo_name}.git 2>&1 > /dev/null;" if options.repo
+      cmd << 'git push origin master 2> /dev/null'
+
+      raise SystemCallError, 'unable to add files to github repo' unless system(cmd)
+
       puts 'done'
       puts "You can now change directories to #{repo_name} and take your kata"
     end
