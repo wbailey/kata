@@ -2,10 +2,10 @@ require 'spec_helper'
 require 'kata/version'
 
 describe 'kata shell' do
-  #it "should exit with status 1" do
-    #system "ruby -I lib bin/kata 1> /dev/null"
-    #$?.exitstatus.should == 1
-  #end
+  it "should exit with status 1" do
+    system "ruby -I lib bin/kata 1> /dev/null"
+    $?.exitstatus.should == 1
+  end
 
   it "should display the version" do
     %x{ruby -I lib bin/kata version}.chomp.should == "kata #{Kata::VERSION}"
