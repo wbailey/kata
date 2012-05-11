@@ -34,6 +34,7 @@ end
 options = OpenStruct.new(
   {
     :repo => true,
+    :language => 'ruby',
   }
 )
 
@@ -42,6 +43,10 @@ OptionParser.new do |opts|
 
   opts.on('-n', '--no-repo', 'Do not create a new repository') do
     options.repo = false
+  end
+
+  opts.on('-l[OPTIONAL]', '--language[=OPTIONAL]', 'Setup the kata file tree using the specified language') do |lang|
+    options.language = lang
   end
 end.parse!
 
@@ -61,8 +66,8 @@ case options.action
       end
     end
 
-    setup = Kata::Setup.new name
-    setup.build_tree
+    setup = Kata::Setup::Base.new(name)
+    setup.build_tree(options.language)
     setup.create_repo(options) rescue Exception
   when :take
     load options.file
