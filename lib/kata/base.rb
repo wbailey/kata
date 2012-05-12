@@ -63,8 +63,6 @@ module Kata
 
         suppress_output
 
-        header :title => 'Congratulations!', :align => 'left'
-
         table :border => true do
           row :header => true do
             column 'Requirement', :color => 'red', :width => 80
@@ -81,7 +79,9 @@ module Kata
 
         report = capture_output
 
-        File.open('test.txt', 'w').write( report )
+        File.open('report.txt', 'w').write( report ).close
+
+        puts report
       end
 
       exit 1 unless status
