@@ -25,7 +25,7 @@ module Kata
 
       puts
 
-      system %q{git add . &&  git commit -m '#{txt}'} rescue Exception
+      system %Q{git add . &&  git commit -m '#{txt}'} rescue Exception
 
       elapsed = Time.now - start
       @@times << {:title => txt, :time => elapsed}
