@@ -1,5 +1,9 @@
+require 'command_line_reporter'
+
 module Kata
   module Base
+    include CommandLineReporter
+
     @@times = []
 
     def kata(txt, lib = nil)
@@ -65,6 +69,20 @@ module Kata
         end
 
         File.open('results.txt', 'r').each { |line| puts line}
+
+        table :border => true do
+          row :header => true do
+            column 'Requirement', :color => 'red', :width => 80
+            column 'Time', :color => 'red', :width => 8
+          end
+
+          @@times.each do |t|
+            row do
+              column t[:title]
+              column t[:time]
+            end
+          end
+        end
       end
 
       exit 1 unless status

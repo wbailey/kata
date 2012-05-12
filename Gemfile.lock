@@ -7,11 +7,13 @@ GEM
     RubyInline (3.9.0)
       ZenTest (~> 4.3)
     ZenTest (4.4.2)
-    addressable (2.2.7)
     autotest (4.4.6)
       ZenTest (>= 4.4.1)
     autotest-growl (0.2.9)
+    colored (1.2)
     columnize (0.3.6)
+    command_line_reporter (3.2.1)
+      colored (>= 1.2)
     debugger (1.1.2)
       columnize (>= 0.3.1)
       debugger-linecache (~> 1.1)
@@ -21,30 +23,17 @@ GEM
     debugger-ruby_core_source (1.1.2)
     define_exception (0.0.3)
     diff-lcs (1.1.2)
-    faraday (0.8.0)
-      multipart-post (~> 1.1)
-    faraday_middleware (0.8.7)
-      faraday (>= 0.7.4, < 0.9)
     flay (1.4.2)
       ruby_parser (~> 2.0)
       sexp_processor (~> 3.0)
     flog (2.5.1)
       ruby_parser (~> 2.0)
       sexp_processor (~> 3.0)
-    hashie (1.2.0)
     heckle (1.4.3)
       ParseTree (>= 2.0.0)
       ZenTest (>= 3.5.2)
       ruby2ruby (>= 1.1.6)
     kramdown (0.13.2)
-    multi_json (1.3.4)
-    multipart-post (1.1.5)
-    octokit (1.0.4)
-      addressable (~> 2.2)
-      faraday (~> 0.8)
-      faraday_middleware (~> 0.8)
-      hashie (~> 1.2)
-      multi_json (~> 1.3)
     rake (0.8.7)
     rspec (2.5.0)
       rspec-core (~> 2.5.0)
@@ -67,12 +56,12 @@ PLATFORMS
 DEPENDENCIES
   autotest
   autotest-growl
+  command_line_reporter
   debugger
   define_exception
   flay
   flog
   heckle
   kramdown
-  octokit
   rake
   rspec (>= 2.4)

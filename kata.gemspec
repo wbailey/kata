@@ -20,4 +20,5 @@ Gem::Specification.new do |gem|
   gem.executables = ['kata']
 
   gem.add_development_dependency "bundler", ">= 1.0.0"
+  gem.add_dependency 'command_line_reporter', '>=3.2.1'
 end

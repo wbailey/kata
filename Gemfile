@@ -1,7 +1,7 @@
 source 'http://rubygems.org'
 
 gem 'define_exception'
-gem 'octokit'
+gem 'command_line_reporter'
 
 group :development do
   gem 'rspec', '>=2.4'
