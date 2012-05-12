@@ -63,7 +63,7 @@ module Kata
 
         suppress_output
 
-        header 'Congratulations!', :align => 'left'
+        header :title => 'Congratulations!', :align => 'left'
 
         table :border => true do
           row :header => true do
