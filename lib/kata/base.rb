@@ -88,7 +88,9 @@ module Kata
 
         x = capture_output
 
-        File.open('test.txt', 'r').write( x )
+        f = File.open('test.txt', 'r')
+        f.write( x )
+        f.close
       end
 
       exit 1 unless status
