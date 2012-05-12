@@ -29,7 +29,7 @@ module Kata
 
       puts
 
-      system %Q{git add . &&  git commit -m '#{txt}'} rescue Exception
+      system %Q{git add . &&  git commit -m '#{txt}' > /dev/null} rescue Exception
 
       elapsed = Time.now - start
       @@times << {:title => txt, :time => elapsed}
@@ -87,6 +87,8 @@ module Kata
         end
 
         x = capture_output
+
+        File.open('test.txt', 'r').write( x )
       end
 
       exit 1 unless status
