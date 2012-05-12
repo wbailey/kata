@@ -79,7 +79,7 @@ module Kata
 
         report = capture_output
 
-        File.open('report.txt', 'w').write( report ).close
+        File.open('report.txt', 'w').write( report )
 
         puts report
       end
