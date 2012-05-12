@@ -61,16 +61,9 @@ module Kata
           [use/3600, use/60 % 60, use % 60].map {|v| v.to_s.rjust(2,'0')}.join(':')
         end
 
-        File.open('results.txt', 'w') do |file|
-          file.puts "\n\n#{title}"
-          file.puts @@times.inject('') {|s,p| s << "- #{p[:title][0,70].ljust(70, ' ')} #{formatter.call(p[:time]).rjust(10,' ')}\n"}
-          file.puts '-' * 70 + ' ' * 5 + '-' * 8
-          file.puts "Total Time taking #{@kata_name} kata: ".ljust(70, ' ') + ' ' * 5 + formatter.call(@@times.inject(0) {|s,h| s += h[:time]})
-        end
-
-        File.open('results.txt', 'r').each { |line| puts line}
-
         suppress_output
+
+        header 'Congratulations!', :align => 'left'
 
         table :border => true do
           row :header => true do
@@ -86,11 +79,9 @@ module Kata
           end
         end
 
-        x = capture_output
+        report = capture_output
 
-        f = File.open('test.txt', 'w')
-        f.write( x )
-        f.close
+        File.open('test.txt', 'w').write( report )
       end
 
       exit 1 unless status
