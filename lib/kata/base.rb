@@ -70,6 +70,8 @@ module Kata
 
         File.open('results.txt', 'r').each { |line| puts line}
 
+        suppress_output
+
         table :border => true do
           row :header => true do
             column 'Requirement', :color => 'red', :width => 80
@@ -79,10 +81,12 @@ module Kata
           @@times.each do |t|
             row do
               column t[:title]
-              column t[:time]
+              column formatter.call(t[:time])
             end
           end
         end
+
+        x = capture_output
       end
 
       exit 1 unless status
