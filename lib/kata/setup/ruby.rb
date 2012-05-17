@@ -39,8 +39,8 @@ require 'spec_helper'
 require '#{use_kata_name}'
 
 describe #{class_name} do
-  describe "new" do
-    it "should instantiate" do
+  describe "#initialize" do
+    it "instantiates" do
       expect {
         #{class_name}.new
       }.should_not raise_exception
