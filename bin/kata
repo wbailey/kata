@@ -16,9 +16,12 @@ DESCRIPTION
     practice of writing code through repitition.
 
 PRIMARY COMMANDS
-    kata setup file [repository]
-        Setup a github repo for the kata development session.  Use a repository
-        if it is provided and do not create a new one
+    kata setup [--no-repo] [--language=option] file
+        Setup a github repo for the kata development session.
+
+        --no-repo         - Add the directory tree and files to the current repo if possible
+        --language=option - Define the programming language for the directory tree that is built
+        file              - Path to the code kata source file for the practice session
 
     kata take file
         Start a kata development session
