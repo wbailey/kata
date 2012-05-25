@@ -53,6 +53,11 @@ OptionParser.new do |opts|
   end
 end.parse!
 
+if ARGV.empty?
+  puts usage
+  abort
+end
+
 options.action = ARGV.shift.downcase.to_sym
 options.file = ARGV.shift
 
