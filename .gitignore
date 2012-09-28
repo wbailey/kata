@@ -16,3 +16,4 @@ bin/rspec
 bin/unit_diff
 bin/zentest
 bin/kramdown
+report.txt
