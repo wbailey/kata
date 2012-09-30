@@ -1,2 +1,2 @@
-rvm --install ruby-1.9.3-p125
-rvm --create --install use ruby-1.9.3-p125@kata
+rvm --install ruby-1.9.3-p194
+rvm --create --install use ruby-1.9.3-p194@kata
