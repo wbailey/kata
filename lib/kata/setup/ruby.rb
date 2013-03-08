@@ -43,7 +43,7 @@ describe #{class_name} do
     it "instantiates" do
       expect {
         #{class_name}.new
-      }.should_not raise_exception
+      }.to_not raise_exception
     end
   end
 end

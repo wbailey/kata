@@ -23,7 +23,7 @@ module Kata
         it "creates files" do
           expect {
             subject.build_tree
-          }.should_not raise_exception
+          }.to_not raise_exception
 
           Dir[File.join(subject.repo_name, '**', '*.rb')].size.should == 4
           Dir[File.join(subject.repo_name, 'README')].size.should == 1
