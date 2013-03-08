@@ -12,26 +12,26 @@ module Kata
       describe "#kata" do
         it "is defined" do
           capture_stdout do
-            lambda {
+            expect {
               kata @summary
-            }.should_not raise_exception
+            }.to_not raise_exception
           end
         end
 
         it "accepts block" do
           capture_stdout do
-            lambda {
+            expect {
               kata @summary do
               end
-            }.should_not raise_exception
+            }.to_not raise_exception
           end
         end
 
         it "displays the summary" do
           output = capture_stdout do
-            lambda {
+            expect {
               kata @summary
-            }.should_not raise_exception
+            }.to_not raise_exception
           end
 
           output.should have_summary @display_summary
@@ -39,10 +39,10 @@ module Kata
 
         it "displays the summary with block" do
           output = capture_stdout do
-            lambda {
+            expect {
               kata @summary do
               end
-            }.should_not raise_exception
+            }.to_not raise_exception
           end
 
           output.should have_summary @display_summary
@@ -56,32 +56,32 @@ module Kata
 
         it "is defined" do
           capture_stdout do
-            lambda {
+            expect {
               kata @summary do
                 requirement @requirement
               end
-            }.should_not raise_exception
+            }.to_not raise_exception
           end
         end
 
         it "accepts block" do
           capture_stdout do
-            lambda {
+            expect {
               kata @summary do
                 requirement @requirement do
                 end
               end
-            }.should_not raise_exception
+            }.to_not raise_exception
           end
         end
 
         it "displays the summary" do
           output = capture_stdout do
-            lambda {
+            expect {
               kata @summary do
                 requirement @requirement
               end
-            }.should_not raise_exception
+            }.to_not raise_exception
           end
 
           output.should have_requirement @display_summary, @requirement
@@ -89,12 +89,12 @@ module Kata
 
         it "displays the summary with block" do
           output = capture_stdout do
-            lambda {
+            expect {
               kata @summary do
                 requirement @requirement do
                 end
               end
-            }.should_not raise_exception
+            }.to_not raise_exception
           end
 
           output.should have_requirement @display_summary, @requirement
@@ -113,19 +113,19 @@ module Kata
 
         it "are displayed" do
           capture_stdout do
-            lambda {
+            expect {
               kata @summary do
                 requirement @requirement do
                   Kata::example @examples[0]
                 end
               end
-            }.should_not raise_exception
+            }.to_not raise_exception
           end
         end
 
         it "are displayed with prompt" do
           output = capture_stdout do
-            lambda {
+            expect {
               kata @summary do
                 requirement @requirement do
                   Kata::example @examples[0]
@@ -133,7 +133,7 @@ module Kata
                   Kata::example @examples[2]
                 end
               end
-            }.should_not raise_exception
+            }.to_not raise_exception
           end
 
           output.should have_examples @display_summary, @requirement, @examples
