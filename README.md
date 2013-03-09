@@ -60,7 +60,7 @@ The [Wiki](https://github.com/wbailey/kata/wiki) has all of the documentation ne
 
 ### Contributors
 
-Wes Bailey ([Exposing Gotchas](http://exposinggotchas.blogspot.com/ "Exposing Gotchas"))
+[Richard Millan](https://github.com/richardiux) updated the tests and forced me to bring more of this up to date
 
 ### License
 
