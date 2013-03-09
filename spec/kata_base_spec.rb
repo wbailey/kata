@@ -3,140 +3,100 @@ require 'kata/base'
 
 module Kata
   module Base
-    describe "DSL" do
-      before :each do
-        @summary = 'sample summary'
-        @display_summary = "#{@summary} Kata"
+    describe 'DSL' do
+      let :use_class do
+        Class.new do
+          include Kata::Base
+        end
       end
+
+      subject { use_class.new }
+
+      let(:system_call) {"git add . && git commit -m 'test req' > /dev/null"}
 
       describe "#kata" do
-        it "is defined" do
-          capture_stdout do
-            expect {
-              kata @summary
-            }.to_not raise_exception
-          end
-        end
+        it 'displays summary' do
+          subject.should_receive(:puts).with('test Kata')
 
-        it "accepts block" do
-          capture_stdout do
-            expect {
-              kata @summary do
-              end
-            }.to_not raise_exception
-          end
-        end
-
-        it "displays the summary" do
-          output = capture_stdout do
-            expect {
-              kata @summary
-            }.to_not raise_exception
-          end
-
-          output.should have_summary @display_summary
-        end
-
-        it "displays the summary with block" do
-          output = capture_stdout do
-            expect {
-              kata @summary do
-              end
-            }.to_not raise_exception
-          end
-
-          output.should have_summary @display_summary
+          subject.kata 'test'
         end
       end
 
-      describe "#requirement" do
-        before :each do
-          @requirement = "Create a simple string calculator with a method add that takes a string argument"
-        end
+      describe '#context' do
+        it 'displays' do
+          subject.should_receive(:puts).with('test Kata')
+          subject.should_receive(:puts).with('   test context')
 
-        it "is defined" do
-          capture_stdout do
-            expect {
-              kata @summary do
-                requirement @requirement
-              end
-            }.to_not raise_exception
+          subject.kata 'test' do
+            subject.context 'test context'
           end
         end
 
-        it "accepts block" do
-          capture_stdout do
-            expect {
-              kata @summary do
-                requirement @requirement do
-                end
-              end
-            }.to_not raise_exception
+        it 'accepts requirement' do
+          subject.should_receive(:puts).with('   test context')
+          subject.should_receive(:puts).with('      test req')
+          subject.should_receive(:print)
+          $stdin.should_receive(:gets).and_return('y')
+          subject.should_receive(:puts).exactly(2).times
+          subject.should_receive(:system).with(system_call).and_return(0)
+          subject.should_receive(:puts)
+
+          subject.kata 'test' do
+            subject.context 'test context' do
+              subject.requirement 'test req'
+            end
           end
-        end
-
-        it "displays the summary" do
-          output = capture_stdout do
-            expect {
-              kata @summary do
-                requirement @requirement
-              end
-            }.to_not raise_exception
-          end
-
-          output.should have_requirement @display_summary, @requirement
-        end
-
-        it "displays the summary with block" do
-          output = capture_stdout do
-            expect {
-              kata @summary do
-                requirement @requirement do
-                end
-              end
-            }.to_not raise_exception
-          end
-
-          output.should have_requirement @display_summary, @requirement
         end
       end
 
-      describe "#example" do
-        before :each do
-          @requirement = "Create a simple string calculator with a method add that takes a string argument"
-          @examples = [
-            %q{The string can contain 0, 1, 2 numbers for example "", "1", "1,2"},
-            "The method will return the sum of the digits",
-            "Then empty string will return 0",
-          ]
-        end
+      describe '#requirement' do
+        it 'displays' do
+          subject.should_receive(:puts).with('   test req')
+          subject.should_receive(:print)
+          $stdin.should_receive(:gets).and_return('y')
+          subject.should_receive(:puts).exactly(2).times
+          subject.should_receive(:system).with(system_call).and_return(0)
+          subject.should_receive(:puts)
 
-        it "are displayed" do
-          capture_stdout do
-            expect {
-              kata @summary do
-                requirement @requirement do
-                  Kata::example @examples[0]
-                end
-              end
-            }.to_not raise_exception
+          subject.kata 'test' do
+            subject.requirement 'test req'
           end
         end
 
-        it "are displayed with prompt" do
-          output = capture_stdout do
-            expect {
-              kata @summary do
-                requirement @requirement do
-                  Kata::example @examples[0]
-                  Kata::example @examples[1]
-                  Kata::example @examples[2]
-                end
-              end
-            }.to_not raise_exception
-          end
+        it 'accepts example' do
+          subject.should_receive(:puts).with('   test req')
+          subject.should_receive(:print)
+          $stdin.should_receive(:gets).and_return('y')
+          subject.should_receive(:puts).exactly(2).times
+          subject.should_receive(:system).with(system_call).and_return(0)
+          subject.should_receive(:puts).exactly(3).times
+          subject.should_receive(:puts)
 
-          output.should have_examples @display_summary, @requirement, @examples
+          subject.kata 'test' do
+            subject.requirement 'test req' do
+              subject.example 'test example 1'
+              subject.example 'test example 2'
+              subject.example 'test example 3'
+            end
+          end
+        end
+
+        it 'accepts detail' do
+          subject.should_receive(:puts).with('   test req')
+          subject.should_receive(:print)
+          $stdin.should_receive(:gets).and_return('y')
+          subject.should_receive(:puts).exactly(2).times
+          subject.should_receive(:system).with(system_call).and_return(0)
+          subject.should_receive(:puts).exactly(3).times
+          subject.should_receive(:puts)
+
+          subject.kata 'test' do
+            subject.requirement 'test req' do
+              subject.detail 'test detail 1'
+              subject.detail 'test detail 2'
+              subject.detail 'test detail 3'
+            end
+          end
         end
       end
     end

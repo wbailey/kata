@@ -18,7 +18,7 @@ module Kata
       yield if block_given?
     end
 
-    def requirement(txt)
+    def requirement(txt = 'kata requirement')
       puts indent + txt
 
       start = Time.now
@@ -29,7 +29,7 @@ module Kata
 
       puts
 
-      system %Q{git add . &&  git commit -m '#{txt}' > /dev/null} rescue Exception
+      system %Q{git add . && git commit -m '#{txt}' > /dev/null} rescue Exception
 
       elapsed = Time.now - start
       @@times << {:title => txt, :time => elapsed}
