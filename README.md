@@ -27,7 +27,7 @@ or do it the old fashioned way and install the gem manually:
 
     DESCRIPTION
         The kata gem allows one to manage their personal development in the
-        practice of writing code through repitition.
+        practice of writing code through repetition.
 
     PRIMARY COMMANDS
         kata setup [--no-repo] [--language=option] file
