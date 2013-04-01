@@ -16,7 +16,7 @@ module Kata
         # Setup from github configuration
         raise Exception, 'Git not installed' unless system 'which git > /dev/null'
 
-        github = OpenStruct.new :url => 'http://github.com/api/v2/json/'
+        github = OpenStruct.new :url => 'https://api.github.com/'
 
         github_user, shell_user = %x{git config --get github.user}.chomp, ENV['USER']
 
@@ -26,17 +26,29 @@ module Kata
 
         github.token = %x{git config --get github.token}.chomp
 
+        if github.token.empty?
+          # Create new token per instructions at
+          # https://help.github.com/articles/creating-an-oauth-token-for-command-line-use
+          print 'GitHub: ' 
+          github.token = `curl -s -u #{github.user} \
+            -d '{"scopes":["repo"],"note":"Ruby kata"}' \
+            #{github.url}authorizations | grep token \
+            | cut -f4 -d'"'`.chomp
+          # Cache it for reuse
+          cmd = "git config --add github.token #{github.token}"
+          system(cmd)
+        end
         raise Exception, 'Unable to determine github api token' if github.token.empty?
-
-        user_string = "-u '#{github.user}/token:#{github.token}'"
-        repo_params = "-d 'name=#{repo_name}' -d 'description=code+kata+repo'"
 
         # Create the repo on github
         if options.repo
           print 'Creating github repo...'
-          raise SystemCallError, 'unable to use curl to create repo on github' unless system <<-EOF
-            curl -s #{user_string} #{repo_params} #{github.url}repos/create 2>&1 > /dev/null;
-          EOF
+          repo_json = `curl -s -H 'Authorization: token #{github.token}' \
+            -d '{"name": "#{repo_name}", "description": "code+kata+repo"}' \
+            #{github.url}user/repos`
+          raise Exception, 'unable to use curl to create repo on github' \
+            if !repo_json.include? \
+            "\"url\": \"#{github.url}repos/#{github.user}/#{repo_name}\","
           puts 'complete'
         end
 
@@ -44,16 +56,18 @@ module Kata
 
         print 'creating files for repo and initializing...'
 
-        cmd = "cd #{repo_name};"
+        cmd = "cd #{repo_name} &&"
         if options.repo
-          cmd << "git init 2>&1 > /dev/null;"
-          cmd << "git add README .rspec lib/ spec/ 2>&1 > /dev/null;"
+          cmd << "git init >/dev/null 2>&1 &&"
+          cmd << "git add README .rspec lib/ spec/ >/dev/null 2>&1 &&"
         else
-          cmd << "git add #{ENV['PWD']}/#{repo_name};"
+          cmd << "git add #{ENV['PWD']}/#{repo_name} >/dev/null 2>&1;"
         end
-        cmd << "git commit -m 'starting kata' 2>&1 > /dev/null;"
-        cmd << "git remote add origin git@github.com:#{github.user}/#{repo_name}.git 2>&1 > /dev/null;" if options.repo
-        cmd << 'git push origin master 2> /dev/null'
+        cmd << "git commit -m 'starting kata' > /dev/null 2>&1;"
+        cmd << "git remote add origin \
+          git@github.com:#{github.user}/#{repo_name}.git \
+          >/dev/null 2>&1 &&" if options.repo
+        cmd << 'git push origin master'
 
         raise SystemCallError, 'unable to add files to github repo' unless system(cmd)
 
