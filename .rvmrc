@@ -1,2 +1,2 @@
-rvm --install ruby-1.9.3-p194
-rvm --create --install use ruby-1.9.3-p194@kata
+rvm --create --install use ruby-1.9.3@kata
+bundle install
