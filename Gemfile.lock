@@ -23,17 +23,41 @@ GEM
     debugger-ruby_core_source (1.1.2)
     define_exception (0.0.3)
     diff-lcs (1.2.1)
+    faraday (0.8.7)
+      multipart-post (~> 1.1)
     flay (1.4.2)
       ruby_parser (~> 2.0)
       sexp_processor (~> 3.0)
     flog (2.5.1)
       ruby_parser (~> 2.0)
       sexp_processor (~> 3.0)
+    github_api (0.9.6)
+      faraday (~> 0.8.1)
+      hashie (>= 1.2)
+      multi_json (~> 1.4)
+      nokogiri (~> 1.5.2)
+      oauth2
+    hashie (2.0.3)
     heckle (1.4.3)
       ParseTree (>= 2.0.0)
       ZenTest (>= 3.5.2)
       ruby2ruby (>= 1.1.6)
+    httpauth (0.2.0)
+    jwt (0.1.8)
+      multi_json (>= 1.5)
     kramdown (0.13.2)
+    multi_json (1.7.2)
+    multi_xml (0.5.3)
+    multipart-post (1.2.0)
+    nokogiri (1.5.9)
+    oauth2 (0.9.1)
+      faraday (~> 0.8)
+      httpauth (~> 0.1)
+      jwt (~> 0.1.4)
+      multi_json (~> 1.0)
+      multi_xml (~> 0.5)
+      rack (~> 1.2)
+    rack (1.5.2)
     rake (0.8.7)
     rspec (2.13.0)
       rspec-core (~> 2.13.0)
@@ -61,6 +85,7 @@ DEPENDENCIES
   define_exception
   flay
   flog
+  github_api
   heckle
   kramdown
   rake

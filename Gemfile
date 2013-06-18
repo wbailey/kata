@@ -2,6 +2,7 @@ source 'http://rubygems.org'
 
 gem 'define_exception'
 gem 'command_line_reporter'
+gem 'github_api'
 
 group :development do
   gem 'rspec', '>=2.4'
