@@ -4,8 +4,8 @@ A kata is defined as an exercise in programming which helps hone your skills thr
 repetition. Authoring katas is done in blogs but you can't really test yourself. 
 [coderdojo](http://www.coderdojo.com) is a fine website and provides a great way to get involved
 with katas.  The purpose of this gem is to provide a work environment based way of interacting.
-This gem provides several facilities for authoring and taking katas that allow you to work in your
-own environment. The inspiration for this gem came from my friend [Nick
+It provides several facilities for authoring and taking katas that allow you to work in your own
+environment. The inspiration for this gem came from my friend [Nick
 Hengeveld](https://github.com/nickh) who first introduced me to concept of a kata several years ago.
 
 ### Installation
