@@ -55,7 +55,7 @@ module Kata
     def complete(status = true)
       return if @@times.size == 0
 
-      formatter = lambda do |sec| 
+      formatter = lambda do |sec|
         use = sec.round
         [use/3600, use/60 % 60, use % 60].map {|v| v.to_s.rjust(2,'0')}.join(':')
       end
@@ -74,13 +74,13 @@ module Kata
             column formatter.call(t[:time])
           end
         end
-
-        report = capture_output
-
-        File.open('report.txt', 'w').write( report )
-
-        puts report
       end
+
+      report = capture_output
+
+      File.open('report.txt', 'w').write( report )
+
+      puts report
     end
 
     def ancestry
