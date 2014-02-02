@@ -2,7 +2,7 @@ source 'http://rubygems.org'
 
 gem 'define_exception'
 gem 'command_line_reporter'
-gem 'github_api'
+gem 'octokit'
 
 group :development do
   gem 'rspec', '>=2.4'
@@ -14,4 +14,5 @@ group :development do
   gem 'flog'
   gem 'flay'
   gem 'heckle'
+  gem 'rubocop'
 end
