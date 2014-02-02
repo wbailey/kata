@@ -1,9 +1,13 @@
 ## Kata
 
 A kata is defined as an exercise in programming which helps hone your skills through practice and
-repetition. Authoring katas is done in blogs but you can't really test yourself. This gem provides a
-DSL to author the kata and administer it as a test providing feedback for evaluation.  It also
-provides basic github repo setup so that you can chart solution progress over time.
+repetition. Authoring katas is done in blogs but you can't really test yourself. There is also
+[coderdojo](http://www.coderdojo.com), a fine site but everything is web based.
+
+This gem provides several things that allow you to work in your own environment while you take the
+kata.  It also provides a DSL to author the kata and administer it as a test providing feedback for
+evaluation.  It also provides basic github repo setup so that you can chart solution progress over
+time.
 
 The inspiration for this gem came from my friend [Nick Hengeveld](https://github.com/nickh)
 
