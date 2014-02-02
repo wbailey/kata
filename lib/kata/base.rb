@@ -53,27 +53,25 @@ module Kata
     end
 
     def complete(status = true)
-      if @@times.size > 0
-        title = status ? 'Congratulations!' : 'You completed the following:'
+      return if @@times.size == 0
 
-        formatter = lambda do |sec| 
-          use = sec.round
-          [use/3600, use/60 % 60, use % 60].map {|v| v.to_s.rjust(2,'0')}.join(':')
+      formatter = lambda do |sec| 
+        use = sec.round
+        [use/3600, use/60 % 60, use % 60].map {|v| v.to_s.rjust(2,'0')}.join(':')
+      end
+
+      suppress_output
+
+      table :border => true do
+        row :header => true do
+          column 'Requirement', :color => 'red', :width => 80
+          column 'Time', :color => 'red', :width => 8
         end
 
-        suppress_output
-
-        table :border => true do
-          row :header => true do
-            column 'Requirement', :color => 'red', :width => 80
-            column 'Time', :color => 'red', :width => 8
-          end
-
-          @@times.each do |t|
-            row do
-              column t[:title]
-              column formatter.call(t[:time])
-            end
+        @@times.each do |t|
+          row do
+            column t[:title]
+            column formatter.call(t[:time])
           end
         end
 
@@ -83,8 +81,6 @@ module Kata
 
         puts report
       end
-
-      exit 1 unless status
     end
 
     def ancestry
