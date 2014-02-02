@@ -6,7 +6,7 @@ repetition. Authoring katas is done in blogs but you can't really test yourself.
 
 This gem provides several facilities for authoring and taking katas that allow you to work in your
 own environment The inspiration for this gem came from my friend [Nick
-Hengeveld](https://github.com/nickh)
+Hengeveld](https://github.com/nickh) who first introduced me to concept of a kata several years ago.
 
 ### Installation
 
