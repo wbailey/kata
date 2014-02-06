@@ -15,4 +15,5 @@ group :development do
   gem 'flay'
   gem 'heckle'
   gem 'rubocop'
+  gem 'faraday'
 end

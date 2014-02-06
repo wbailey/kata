@@ -80,6 +80,7 @@ DEPENDENCIES
   command_line_reporter
   debugger
   define_exception
+  faraday
   flay
   flog
   heckle

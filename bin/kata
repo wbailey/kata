@@ -68,7 +68,7 @@ case options.action
     name = nil
 
     File.open(options.file).each do |line|
-      if line.match /^kata *\"([^\"]*)\" *do$/
+      if line.match(/^kata *\"([^\"]*)\" *do$/)
         name = $1
         break
       end
