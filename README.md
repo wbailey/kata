@@ -1,4 +1,4 @@
-## Kata
+## Kata [![Code Climate](https://codeclimate.com/github/wbailey/kata.png)](https://codeclimate.com/github/wbailey/kata)
 
 A kata is defined as an exercise in programming which helps hone your skills through practice and
 repetition. Authoring katas is done in blogs but you can't really test yourself. 
