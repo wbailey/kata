@@ -11,6 +11,8 @@ ago.
 
 ### Installation
 
+NOTE: Requires version 1.9.3
+
 It is up on rubygems.org so add it to your project bundle:
 
     gem kata
