@@ -6,8 +6,6 @@ require 'fileutils'
 module Kata
   module Setup
     describe Base do
-      #subject {Kata::Setup::Base.new}
-
       describe "new" do
         it "define a repo name" do
           subject.repo_name.should match /kata-#{Time.now.strftime('%Y-%m-%d')}-\d{6}/
