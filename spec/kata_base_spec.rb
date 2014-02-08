@@ -16,7 +16,7 @@ module Kata
 
       describe "#kata" do
         it 'displays summary' do
-          subject.should_receive(:puts).with('test Kata')
+          expect(subject).to receive(:puts).with('test Kata')
 
           subject.kata 'test'
         end
@@ -24,8 +24,8 @@ module Kata
 
       describe '#context' do
         it 'displays' do
-          subject.should_receive(:puts).with('test Kata')
-          subject.should_receive(:puts).with('   test context')
+          expect(subject).to receive(:puts).with('test Kata')
+          expect(subject).to receive(:puts).with('   test context')
 
           subject.kata 'test' do
             subject.context 'test context'
@@ -33,13 +33,13 @@ module Kata
         end
 
         it 'accepts requirement' do
-          subject.should_receive(:puts).with('   test context')
-          subject.should_receive(:puts).with('      test req')
-          subject.should_receive(:print)
-          $stdin.should_receive(:gets).and_return('y')
-          subject.should_receive(:puts).exactly(2).times
-          subject.should_receive(:system).with(system_call).and_return(0)
-          subject.should_receive(:puts)
+          expect(subject).to receive(:puts).with('   test context')
+          expect(subject).to receive(:puts).with('      test req')
+          expect(subject).to receive(:print)
+          expect($stdin).to receive(:gets).and_return('y')
+          expect(subject).to receive(:puts).exactly(2).times
+          expect(subject).to receive(:system).with(system_call).and_return(0)
+          expect(subject).to receive(:puts)
 
           subject.kata 'test' do
             subject.context 'test context' do
@@ -51,12 +51,12 @@ module Kata
 
       describe '#requirement' do
         it 'displays' do
-          subject.should_receive(:puts).with('   test req')
-          subject.should_receive(:print)
-          $stdin.should_receive(:gets).and_return('y')
-          subject.should_receive(:puts).exactly(2).times
-          subject.should_receive(:system).with(system_call).and_return(0)
-          subject.should_receive(:puts)
+          expect(subject).to receive(:puts).with('   test req')
+          expect(subject).to receive(:print)
+          expect($stdin).to receive(:gets).and_return('y')
+          expect(subject).to receive(:puts).exactly(2).times
+          expect(subject).to receive(:system).with(system_call).and_return(0)
+          expect(subject).to receive(:puts)
 
           subject.kata 'test' do
             subject.requirement 'test req'
@@ -64,13 +64,13 @@ module Kata
         end
 
         it 'accepts example' do
-          subject.should_receive(:puts).with('   test req')
-          subject.should_receive(:print)
-          $stdin.should_receive(:gets).and_return('y')
-          subject.should_receive(:puts).exactly(2).times
-          subject.should_receive(:system).with(system_call).and_return(0)
-          subject.should_receive(:puts).exactly(3).times
-          subject.should_receive(:puts)
+          expect(subject).to receive(:puts).with('   test req')
+          expect(subject).to receive(:print)
+          expect($stdin).to receive(:gets).and_return('y')
+          expect(subject).to receive(:puts).exactly(2).times
+          expect(subject).to receive(:system).with(system_call).and_return(0)
+          expect(subject).to receive(:puts).exactly(3).times
+          expect(subject).to receive(:puts)
 
           subject.kata 'test' do
             subject.requirement 'test req' do
@@ -82,13 +82,13 @@ module Kata
         end
 
         it 'accepts detail' do
-          subject.should_receive(:puts).with('   test req')
-          subject.should_receive(:print)
-          $stdin.should_receive(:gets).and_return('y')
-          subject.should_receive(:puts).exactly(2).times
-          subject.should_receive(:system).with(system_call).and_return(0)
-          subject.should_receive(:puts).exactly(3).times
-          subject.should_receive(:puts)
+          expect(subject).to receive(:puts).with('   test req')
+          expect(subject).to receive(:print)
+          expect($stdin).to receive(:gets).and_return('y')
+          expect(subject).to receive(:puts).exactly(2).times
+          expect(subject).to receive(:system).with(system_call).and_return(0)
+          expect(subject).to receive(:puts).exactly(3).times
+          expect(subject).to receive(:puts)
 
           subject.kata 'test' do
             subject.requirement 'test req' do

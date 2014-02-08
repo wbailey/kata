@@ -8,12 +8,12 @@ module Kata
     describe Base do
       describe "new" do
         it "define a repo name" do
-          subject.repo_name.should match /kata-#{Time.now.strftime('%Y-%m-%d')}-\d{6}/
+          expect(subject.repo_name).to match /kata-#{Time.now.strftime('%Y-%m-%d')}-\d{6}/
         end
 
         it "defines the kata name" do
           s = Kata::Setup::Base.new 'my-kata'
-          s.kata_name.should == 'my-kata'
+          expect(s.kata_name).to eq('my-kata')
         end
       end
 
@@ -23,9 +23,9 @@ module Kata
             subject.build_tree
           }.to_not raise_exception
 
-          Dir[File.join(subject.repo_name, '**', '*.rb')].size.should == 4
-          Dir[File.join(subject.repo_name, 'README')].size.should == 1
-          Dir[File.join(subject.repo_name, '.rspec')].size.should == 1
+          expect(Dir[File.join(subject.repo_name, '**', '*.rb')].size).to eq(4)
+          expect(Dir[File.join(subject.repo_name, 'README')].size).to eq(1)
+          expect(Dir[File.join(subject.repo_name, '.rspec')].size).to eq(1)
 
           FileUtils.remove_entry_secure subject.repo_name
         end

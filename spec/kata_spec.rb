@@ -4,11 +4,11 @@ require 'kata/version'
 describe 'kata shell' do
   it "should exit with status 1" do
     system "ruby -I lib bin/kata 1> /dev/null"
-    $?.exitstatus.should == 1
+    expect($?.exitstatus).to eq(1)
   end
 
   it "should display the version" do
-    %x{ruby -I lib bin/kata version}.chomp.should == "kata #{Kata::VERSION}"
+    expect(%x{ruby -I lib bin/kata version}.chomp).to eq("kata #{Kata::VERSION}")
   end
 
   it "should run the kata" do
@@ -19,12 +19,12 @@ describe 'kata shell' do
       EOF
     end
 
-    %x{ruby -I lib bin/kata take test_sample.rb}.chomp.should == 'My Test Kata'
+    expect(%x{ruby -I lib bin/kata take test_sample.rb}.chomp).to eq('My Test Kata')
 
     File.unlink 'test_sample.rb'
   end
 
   it "should display the usage message" do
-    %x{ruby -I lib bin/kata help}.should =~ /NAME\n.*kata - Ruby kata management/
+    expect(%x{ruby -I lib bin/kata help}).to match(/NAME\n.*kata - Ruby kata management/)
   end
 end

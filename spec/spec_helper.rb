@@ -6,7 +6,7 @@ Dir[File.dirname(__FILE__) + "/support/**/*.rb"].each {|f| require f}
 
 RSpec.configure do |config|
   config.before(:each) do
-    Kata::Base.stub(:system)
+    allow(Kata::Base).to receive(:system)
   end
 end
 
