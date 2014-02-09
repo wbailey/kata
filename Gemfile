@@ -6,7 +6,7 @@ gem 'octokit'
 
 group :development do
   gem 'rspec', '>=2.4'
-  gem 'rcov'
+  gem 'simplecov'
   gem 'debugger'
   gem 'guard'
   gem 'fakefs'

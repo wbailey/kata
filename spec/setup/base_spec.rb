@@ -1,6 +1,5 @@
 require 'spec_helper'
 require 'kata/setup/base'
-require 'kata/setup/ruby'
 require 'fileutils'
 require 'fakefs'
 
