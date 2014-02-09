@@ -5,17 +5,11 @@ module Kata
     class Ruby < Kata::Setup::Base
       def build_tree
         %w{lib spec helpers matchers}.each { |path| tree(path) }
-
         readme
-
         base_class
-
         dot_rspec
-
         spec_helper
-
         kata_spec
-
         spec_matcher
       end
 
@@ -44,7 +38,7 @@ module Kata
         FileUtils.mkdir_p(full_path)
       end
 
-      # Cheap templating system methods
+      # Using here docs for a cheap templating system
       def readme
         File.open(File.join(repo_name, 'README'), 'w') { |f| f.write(<<EOF) }
 Leveling up my ruby awesomeness!
@@ -60,7 +54,6 @@ EOF
       end
 
       def dot_rspec
-        # create the .rspec file
         File.open(File.join(repo_name, '.rspec'), 'w') {|f| f.write <<EOF}
 --color --format d
 EOF
@@ -77,7 +70,6 @@ EOF
       end
 
       def kata_spec
-        # create a working spec file for the kata
         File.open(File.join(repo_name, 'spec', "#{use_kata_name}_spec.rb"), 'w') {|f| f.write <<EOF}
 require 'spec_helper'
 require '#{use_kata_name}'
@@ -95,7 +87,6 @@ EOF
       end
 
       def spec_matcher
-        # stub out a custom matchers file
         File.open(File.join(repo_name, 'spec', 'support', 'matchers', "#{use_kata_name}.rb"), 'w') {|f| f.write <<EOF}
 RSpec::Matchers.define :your_method do |expected|
   match do |your_match|
