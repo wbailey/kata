@@ -1,7 +1,5 @@
 require 'spec_helper'
 require 'kata/setup/base'
-require 'fileutils'
-require 'fakefs'
 
 module Kata
   module Setup

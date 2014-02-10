@@ -1,6 +1,6 @@
-require 'spec_helper'
-require 'kata/setup/ruby'
-require 'fakefs'
+require "spec_helper"
+require "kata/setup/ruby"
+require "fakefs"
 
 module Kata
   module Setup
