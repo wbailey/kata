@@ -1,4 +1,4 @@
-## Kata [![Code Climate](https://codeclimate.com/github/wbailey/kata.png)](https://codeclimate.com/github/wbailey/kata) [![Gem Version](https://badge.fury.io/rb/kata.png)](http://badge.fury.io/rb/kata)
+## Kata [![Build Status](https://secure.travis-ci.org/wbailey/kata.png?branch=master)](http://travis-ci.org/wbailey/kata)  [![Code Climate](https://codeclimate.com/github/wbailey/kata.png)](https://codeclimate.com/github/wbailey/kata) [![Gem Version](https://badge.fury.io/rb/kata.png)](http://badge.fury.io/rb/kata)
 
 A kata is defined as an exercise in programming which helps hone your skills through practice and
 repetition. Authoring katas is done in blogs but you can't really test yourself. 
