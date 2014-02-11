@@ -6,12 +6,12 @@ gem "octokit"
 group :test do
   gem "fakefs", :require => "fakefs/safe"
   gem "rspec"
+  gem "simplecov"
+  gem "guard"
 end
 
 group :development do
-  gem "simplecov"
   gem "debugger"
-  gem "guard"
   gem "rake"
   gem "flog"
   gem "flay"
