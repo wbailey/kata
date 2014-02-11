@@ -1,8 +1,8 @@
-$: << '.' << File.join(File.dirname(__FILE__), '..', 'lib')
+$: << "." << File.join(File.dirname(__FILE__), "..", "lib")
 
 require "rspec"
 require "kata/base"
-require 'simplecov'
+require "simplecov"
 
 Dir[File.dirname(__FILE__) + "/support/**/*.rb"].each {|f| require f}
 
@@ -12,4 +12,4 @@ RSpec.configure do |config|
   end
 end
 
-#SimpleCov.start
+SimpleCov.start

@@ -1,11 +1,13 @@
 require "spec_helper"
 require "kata/setup/ruby"
-require "fakefs"
+require "fakefs/spec_helpers"
 
 module Kata
   module Setup
     describe Ruby do
       describe "#build_tree" do
+        include FakeFS::SpecHelpers
+
         before :each do
           subject.build_tree
           @use_dir = File.join("/", subject.repo_name)
