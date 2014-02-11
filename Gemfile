@@ -5,10 +5,10 @@ gem "octokit"
 
 group :test do
   gem "fakefs", :require => "fakefs/safe"
+  gem "rspec"
 end
 
 group :development do
-  gem "rspec", ">=2.4"
   gem "simplecov"
   gem "debugger"
   gem "guard"

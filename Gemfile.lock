@@ -114,6 +114,6 @@ DEPENDENCIES
   heckle
   octokit
   rake
-  rspec (>= 2.4)
+  rspec
   rubocop
   simplecov
