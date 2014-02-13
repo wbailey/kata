@@ -53,7 +53,7 @@ module Kata
     end
 
     def question(txt)
-      puts indent + "- #{txt}"
+      puts indent + "- #{txt.sub(/\?$/, '')}?"
     end
 
     private

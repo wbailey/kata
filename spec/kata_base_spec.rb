@@ -17,12 +17,23 @@ module Kata
       describe "#questions" do
         it "individually displays question" do
           expect(subject).to receive(:puts).with("\nQuestions:")
-          expect(subject).to receive(:puts).with("   - test question 1")
-          expect(subject).to receive(:puts).with("   - test question 2")
+          expect(subject).to receive(:puts).with("   - test question 1?")
+          expect(subject).to receive(:puts).with("   - test question 2?")
 
           subject.questions do
             subject.question "test question 1"
             subject.question "test question 2"
+          end
+        end
+
+        it "ignores trailing question mark" do
+          expect(subject).to receive(:puts).with("\nQuestions:")
+          expect(subject).to receive(:puts).with("   - test question 1?")
+          expect(subject).to receive(:puts).with("   - test question 2?")
+
+          subject.questions do
+            subject.question "test question 1?"
+            subject.question "test question 2?"
           end
         end
 
