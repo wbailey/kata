@@ -3,8 +3,8 @@
 A kata is defined as an exercise in programming which helps hone your skills through practice and
 repetition. Authoring katas is done in blogs but you can't really test yourself.  Dave Thomas
 [@pragdave](https://twitter.com/pragdave), started this movement for programming.  He recently
-created [codekata.com](http://www.codekata.com) which is a comprehensive archives of all of the
-katas he has writtne.  Another fine site is [coderdojo](http://www.coderdojo.com). It provides a
+created [codekata.com](http://www.codekata.com), which is a comprehensive archives of all of the
+katas he has written.  Another fine site is [coderdojo](http://www.coderdojo.com). It provides a
 great way to get involved with katas.  The purpose of this gem is to provide a work environment
 based way of interacting.  It provides several facilities for authoring and taking katas that allow
 you to work in your own environment. The inspiration for this gem came from my friend
