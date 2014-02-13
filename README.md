@@ -1,13 +1,14 @@
 ## Kata [![Build Status](https://travis-ci.org/wbailey/kata.png?branch=master)](https://travis-ci.org/wbailey/kata)  [![Code Climate](https://codeclimate.com/github/wbailey/kata.png)](https://codeclimate.com/github/wbailey/kata) [![Gem Version](https://badge.fury.io/rb/kata.png)](http://badge.fury.io/rb/kata)
 
 A kata is defined as an exercise in programming which helps hone your skills through practice and
-repetition. Authoring katas is done in blogs but you can't really test yourself. 
+repetition. Authoring katas is done in blogs but you can't really test yourself.  Dave Thomas
+(@pragdave), is a proponet and compiled a list of katas at [codekata.com](http://www.codekata.com).
 [coderdojo](http://www.coderdojo.com) is a fine website and provides a great way to get involved
 with katas.  The purpose of this gem is to provide a work environment based way of interacting.
 It provides several facilities for authoring and taking katas that allow you to work in your own
-environment. The inspiration for this gem came from my friend [Nick
-Hengeveld](https://github.com/nickh) who first introduced me to the concept of a kata several years
-ago.
+environment. The inspiration for this gem came from my friend
+[Nick Hengeveld](https://github.com/nickh) who first introduced me to the concept of a kata several
+years ago.
 
 ### Installation
 
