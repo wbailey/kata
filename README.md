@@ -62,6 +62,8 @@ The [Wiki](https://github.com/wbailey/kata/wiki) has all of the documentation ne
 * requirement(string, &block)
 * detail(string)
 * example(string)
+* questions(&block)
+* question(string)
 
 ### Contributors
 
