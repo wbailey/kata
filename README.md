@@ -10,7 +10,8 @@ great way to get involved with katas.
 The purpose of this gem is to provide a work environment based way of interacting.  It provides
 several facilities for authoring and taking katas that allow you to work in your own environment.
 The inspiration for this gem came from my friend [Nick Hengeveld](https://github.com/nickh) who
-first introduced me to the concept of a kata several years ago.
+first introduced me to the concept of a kata several years ago and provided feedback during it's
+development.
 
 ### Installation
 
