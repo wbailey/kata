@@ -14,6 +14,25 @@ module Kata
 
       let(:system_call) {"git add . && git commit -m 'test req' > /dev/null"}
 
+      describe "#questions" do
+        it "individually displays question" do
+          expect(subject).to receive(:puts).with("\nQuestions:")
+          expect(subject).to receive(:puts).with("   - test question 1")
+          expect(subject).to receive(:puts).with("   - test question 2")
+
+          subject.questions do
+            subject.question "test question 1"
+            subject.question "test question 2"
+          end
+        end
+
+        it "ignores questions when none provided" do
+          expect(subject).to_not receive(:puts)
+
+          subject.questions
+        end
+      end
+
       describe "#kata" do
         it 'displays summary' do
           expect(subject).to receive(:puts).with('test Kata')

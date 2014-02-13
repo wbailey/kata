@@ -45,6 +45,17 @@ module Kata
       puts indent + '- ' + "detail: #{txt}"
     end
 
+    def questions
+      if block_given?
+        puts "\nQuestions:"
+        yield
+      end
+    end
+
+    def question(txt)
+      puts indent + "- #{txt}"
+    end
+
     private
 
     def ask(prompt, default)
