@@ -80,7 +80,7 @@ module Kata
         end
 
         @@times.each do |t|
-          row do
+          row :color => 'white' do
             column t[:title]
             column formatter.call(t[:time])
           end
