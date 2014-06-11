@@ -7,16 +7,15 @@ group :test do
   gem "fakefs", :require => "fakefs/safe"
   gem "rspec"
   gem "simplecov"
-  gem "guard"
+  gem 'autotest'
+  gem 'autotest-growl'
+  gem 'autotest-fsevent'
 end
 
 group :development do
-  gem "debugger"
+  gem "debugger2"
   gem "pry"
   gem "rake"
-  gem "flog"
-  gem "flay"
-  gem "heckle"
   gem "rubocop"
   gem "faraday"
 end

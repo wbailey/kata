@@ -79,7 +79,7 @@ describe #{class_name} do
     it "instantiates" do
       expect {
         #{class_name}.new
-      }.to_not raise_exception
+      }.to_not raise_error
     end
   end
 end
@@ -90,7 +90,7 @@ EOF
         File.open(File.join(repo_name, 'spec', 'support', 'matchers', "#{use_kata_name}.rb"), 'w') {|f| f.write <<EOF}
 RSpec::Matchers.define :your_method do |expected|
   match do |your_match|
-    #your_match.method_on_object_to_execute == expected
+    #expect(your_match.method_on_object_to_execute).to eq(expected)
   end
 end
 EOF
