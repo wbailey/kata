@@ -7,6 +7,7 @@ group :test do
   gem "fakefs", :require => "fakefs/safe"
   gem "rspec"
   gem "simplecov"
+  gem 'rspec-autotest'
   gem 'autotest'
   gem 'autotest-growl'
   gem 'autotest-fsevent'
