@@ -30,6 +30,8 @@ module Kata
           Kata::Setup::Ruby.new(kata_name).build_tree
         when 'javascript'
           Kata::Setup::Javascript.new(kata_name).build_tree
+        when 'php'
+          Kata::Setup::Php.new(kata_name).build_tree
         end
       end
 
