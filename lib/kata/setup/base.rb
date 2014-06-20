@@ -35,6 +35,20 @@ module Kata
 
       private
 
+      def use_kata_name
+        kata_name.gsub(/( |-)\1?/, '_').downcase
+      end
+
+      def class_name
+        kata_name.split(/ |-|_/).map(&:capitalize).join
+      end
+
+      def readme
+        File.open(File.join(repo_name, 'README'), 'w') { |f| f.write(<<EOF) }
+Leveling up my coding awesomeness!
+EOF
+      end
+
       def github
         # Setup from github configuration
         raise Exception, 'Git not installed?  Could not find git using which' unless system('which git > /dev/null')

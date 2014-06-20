@@ -15,14 +15,6 @@ module Kata
 
       private
 
-      def use_kata_name
-        kata_name.gsub(/( |-)\1?/, '_').downcase
-      end
-
-      def class_name
-        kata_name.split(/ |-|_/).map(&:capitalize).join
-      end
-
       def tree(path)
         full_path = case path
           when "lib"
@@ -39,12 +31,6 @@ module Kata
       end
 
       # Using here docs for a cheap templating system
-      def readme
-        File.open(File.join(repo_name, 'README'), 'w') { |f| f.write(<<EOF) }
-Leveling up my ruby awesomeness!
-EOF
-      end
-
       def base_class
         # create the base class file
         File.open(File.join(repo_name, 'lib', "#{use_kata_name}.rb"), 'w') {|f| f.write <<EOF}

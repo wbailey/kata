@@ -63,7 +63,7 @@ options.file = ARGV.shift
 
 case options.action
   when :setup
-    raise ArgumentError unless options.file && File.exists?(options.file)
+    raise(ArgumentError, 'No kata source file specified') unless options.file && File.exists?(options.file)
 
     name = nil
 

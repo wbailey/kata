@@ -6,19 +6,12 @@ module Kata
       def build_tree
         %w{lib spec}.each { |path| tree(path) }
         readme
+        package_json
         base_class
         kata_spec
       end
 
       private
-
-      def use_kata_name
-        kata_name.gsub(/( |-)\1?/, '_').downcase
-      end
-
-      def class_name
-        kata_name.split(/ |-|_/).map(&:capitalize).join
-      end
 
       def tree(path)
         full_path = case path
@@ -32,9 +25,16 @@ module Kata
       end
 
       # Using here docs for a cheap templating system
-      def readme
-        File.open(File.join(repo_name, 'README'), 'w') { |f| f.write(<<EOF) }
-Leveling up my Javascript and Node awesomeness!
+      def package_json
+        File.open(File.join(repo_name, 'package.json'), 'w') { |f| f.write(<<EOF) }
+{
+  "name": "#{use_kata_name}",
+  "version": "0.0.1",
+  "dependencies": {
+    "jasmine-node": "latest"
+  },
+  "private": true
+}
 EOF
       end
 
@@ -50,14 +50,14 @@ EOF
       end
 
       def kata_spec
-        File.open(File.join(repo_name, 'spec', "#{use_kata_name}_spec.rb"), 'w') {|f| f.write <<EOF}
-var calculator = require("../lib/calculator");
+        File.open(File.join(repo_name, 'spec', "#{use_kata_name}_spec.js"), 'w') {|f| f.write <<EOF}
+var #{use_kata_name} = require("../lib/#{use_kata_name}");
 
 describe("#{class_name}", function() {
   it("sets the expression", function() {
     var expectation = "1,2";
-    calculator.setExpr(expectation);
-    var expr = calculator.getExpr();
+    #{use_kata_name}.setExpr(expectation);
+    var expr = #{use_kata_name}.getExpr();
     expect(expr).toBe(expectation);
   });
 });
