@@ -41,6 +41,11 @@ EOF
       def base_class
         # create the base class file
         File.open(File.join(repo_name, 'lib', "#{use_kata_name}.js"), 'w') {|f| f.write <<EOF}
+var expression = null;
+
+exports.getExpr = function() { 
+  return this.expression;
+};
 EOF
       end
 
