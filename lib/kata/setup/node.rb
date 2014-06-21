@@ -2,12 +2,12 @@ require 'kata/setup/base'
 
 module Kata
   module Setup
-    class Javascript < Kata::Setup::Base
+    class Node < Kata::Setup::Base
       def build_tree
         %w{lib spec}.each { |path| tree(path) }
         readme
         package_json
-        base_class
+        kata_file
         kata_spec
       end
 
@@ -26,7 +26,7 @@ module Kata
 
       # Using here docs for a cheap templating system
       def package_json
-        File.open(File.join(repo_name, 'package.json'), 'w') { |f| f.write(<<EOF) }
+        write_repo_file('package.json',<<EOF)
 {
   "name": "#{use_kata_name}",
   "version": "0.0.1",
@@ -38,9 +38,9 @@ module Kata
 EOF
       end
 
-      def base_class
+      def kata_file
         # create the base class file
-        File.open(File.join(repo_name, 'lib', "#{use_kata_name}.js"), 'w') {|f| f.write <<EOF}
+        write_repo_file(File.join('lib', "#{use_kata_name}.js"),<<EOF)
 var expression = null;
 
 exports.getExpr = function() { 
@@ -50,7 +50,7 @@ EOF
       end
 
       def kata_spec
-        File.open(File.join(repo_name, 'spec', "#{use_kata_name}_spec.js"), 'w') {|f| f.write <<EOF}
+        write_repo_file(File.join('spec', "#{use_kata_name}_spec.js"),<<EOF)
 var #{use_kata_name} = require("../lib/#{use_kata_name}");
 
 describe("#{class_name}", function() {

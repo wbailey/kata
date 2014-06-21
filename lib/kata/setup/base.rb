@@ -28,10 +28,12 @@ module Kata
         case type
         when 'ruby'
           Kata::Setup::Ruby.new(kata_name).build_tree
-        when 'javascript'
-          Kata::Setup::Javascript.new(kata_name).build_tree
+        when 'node'
+          Kata::Setup::Node.new(kata_name).build_tree
         when 'php'
           Kata::Setup::Php.new(kata_name).build_tree
+        else
+          raise(ArgumentError, "Invalid language type #{type}")
         end
       end
 
@@ -45,8 +47,12 @@ module Kata
         kata_name.split(/ |-|_/).map(&:capitalize).join
       end
 
+      def write_repo_file(use_file, use_contents)
+        File.open(File.join(repo_name, use_file), 'w') {|f| f.write(use_contents)}
+      end
+
       def readme
-        File.open(File.join(repo_name, 'README'), 'w') { |f| f.write(<<EOF) }
+        write_repo_file('README',<<EOF)
 Leveling up my coding awesomeness!
 EOF
       end

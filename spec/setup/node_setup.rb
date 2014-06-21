@@ -25,7 +25,7 @@ module Kata
           expect(File.exists?(File.join(@use_dir, "README"))).to be true
         end
 
-        it "create base class file" do
+        it "create kata main file" do
           expect(File.exists?(File.join(@use_dir, "lib", "#{subject.kata_name}.js"))).to be true
         end
 

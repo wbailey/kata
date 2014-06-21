@@ -9,15 +9,15 @@ GEM
     autotest-fsevent (0.2.9)
       sys-uname
     autotest-growl (0.2.16)
+    byebug (3.1.2)
+      columnize (~> 0.8)
+      debugger-linecache (~> 1.2)
     coderay (1.1.0)
     colored (1.2)
     columnize (0.8.9)
     command_line_reporter (3.3.2)
       colored (>= 1.2)
     debugger-linecache (1.2.0)
-    debugger2 (1.0.0.beta2)
-      columnize (>= 0.3.1)
-      debugger-linecache (~> 1.2.0)
     diff-lcs (1.2.5)
     docile (1.1.3)
     fakefs (0.5.2)
@@ -80,8 +80,8 @@ DEPENDENCIES
   autotest
   autotest-fsevent
   autotest-growl
+  byebug
   command_line_reporter
-  debugger2
   fakefs
   faraday
   octokit

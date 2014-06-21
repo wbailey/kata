@@ -1,5 +1,8 @@
 require 'spec_helper'
 require 'kata/setup/base'
+require 'kata/setup/ruby'
+require 'kata/setup/node'
+require 'kata/setup/php'
 
 module Kata
   module Setup
@@ -12,6 +15,41 @@ module Kata
         it "defines the kata name" do
           s = Kata::Setup::Base.new 'my-kata'
           expect(s.kata_name).to eq('my-kata')
+        end
+      end
+
+      describe "#build_tree" do
+        subject {Kata::Setup::Base.new}
+
+        let(:ruby_setup) {Kata::Setup::Ruby.new('kata')}
+        let(:node_setup) {Kata::Setup::Node.new('kata')}
+        let(:php_setup) {Kata::Setup::Php.new('kata')}
+
+        it 'invokes the ruby setup' do
+          expect(Kata::Setup::Ruby).to receive(:new).and_return(ruby_setup)
+          expect(ruby_setup).to receive(:build_tree)
+
+          subject.build_tree 'ruby'
+        end
+
+        it 'invokes the node setup' do
+          expect(Kata::Setup::Node).to receive(:new).and_return(node_setup)
+          expect(node_setup).to receive(:build_tree)
+
+          subject.build_tree 'node'
+        end
+
+        it 'invokes the php setup' do
+          expect(Kata::Setup::Php).to receive(:new).and_return(php_setup)
+          expect(php_setup).to receive(:build_tree)
+
+          subject.build_tree 'php'
+        end
+
+        it 'rejects invalid language types' do
+          expect {
+            subject.build_tree 'asdf'
+          }.to raise_error
         end
       end
     end

@@ -14,7 +14,7 @@ group :test do
 end
 
 group :development do
-  gem "debugger2"
+  gem "byebug"
   gem "pry"
   gem "rake"
   gem "rubocop"

@@ -27,7 +27,7 @@ module Kata
 
       # Using here docs for a cheap templating system
       def bootstrap
-        File.open(File.join(repo_name, 'bootstrap.sh'), 'w') { |f| f.write(<<EOF) }
+        write_repo_file('bootstrap.h',<<EOF)
 #!/bin/sh
 
 php_version=$(php -v | head -1 | awk '{print $2}'  | sed 's/\\.//g')
@@ -40,12 +40,7 @@ if [[ $php_version -gt $composer_version ]]; then
   ./composer install
   export PATH=vendor/bin:$PATH
 else
-  if [ -z $(which wget) ]; then
-    echo "please install wget to proceed"
-    exit 1
-  fi
-
-  wget https://phar.phpunit.de/phpunit.phar
+  curl -O https://phar.phpunit.de/phpunit.phar
   mv phpunit.phar phpunit
   chmod 755 phpunit
 fi
@@ -53,7 +48,7 @@ EOF
       end
 
       def composer_json
-        File.open(File.join(repo_name, 'composer.json'), 'w') { |f| f.write(<<EOF) }
+        write_repo_file('composer.json',<<EOF)
 {
     "require-dev": {
         "phpunit/phpunit": "4.1.*"
@@ -63,11 +58,13 @@ EOF
       end
 
       def base_class
-        # create the base class file
-        File.open(File.join(repo_name, 'src', "#{class_name}.php"), 'w') {|f| f.write <<EOF}
+        write_repo_file(File.join('src', "#{class_name}.php"),<<EOF)
 <?php
 
 class #{class_name} {
+
+  public function __construct() { }
+
 }
 
 ?>
@@ -75,14 +72,23 @@ EOF
       end
 
       def php_test
-        File.open(File.join(repo_name, 'test', "#{class_name}Test.php"), 'w') {|f| f.write <<EOF}
+        write_repo_file(File.join('test', "#{class_name}Test.php"),<<EOF)
 <?php
 
 require 'src/#{class_name}.php';
 
 class #{class_name}Test extends PHPUnit_Framework_TestCase {
 
+  public function testInstatiate#{class_name}() {
+    try {
+      $calc = new #{class_name}();
+    } catch (Exception $e) {
+      $this->fail();
+    }
+  }
+
 }
+
 ?>
 EOF
       end
