@@ -1,10 +1,13 @@
-$: << "." << File.join(File.dirname(__FILE__), "..", "lib")
+$: << '.' << File.join(File.dirname(__FILE__), '..', 'lib')
 
-require "rspec"
-require "kata/base"
-require "simplecov"
+require 'rspec'
+require 'kata/base'
+require 'simplecov'
+require 'codeclimate-test-reporter'
 
-Dir[File.dirname(__FILE__) + "/support/**/*.rb"].each {|f| require f}
+CodeClimate::TestReporter.start
+
+Dir[File.dirname(__FILE__) + '/support/**/*.rb'].each {|f| require f}
 
 RSpec.configure do |config|
   config.before(:each) do

@@ -12,6 +12,8 @@ GEM
     byebug (3.1.2)
       columnize (~> 0.8)
       debugger-linecache (~> 1.2)
+    codeclimate-test-reporter (0.3.0)
+      simplecov (>= 0.7.1, < 1.0.0)
     coderay (1.1.0)
     colored (1.2)
     columnize (0.8.9)
@@ -81,6 +83,7 @@ DEPENDENCIES
   autotest-fsevent
   autotest-growl
   byebug
+  codeclimate-test-reporter
   command_line_reporter
   fakefs
   faraday
