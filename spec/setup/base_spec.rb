@@ -18,6 +18,27 @@ module Kata
         end
       end
 
+      describe '#create_repo' do
+        #subject {Kata::Setup::Base.new}
+
+        let(:no_repo) {OpenStruct.new(:repo => false)}
+        let(:with_repo) {OpenStruct.new(:repo => true)}
+
+        it 'only creates if specified' do
+          expect(subject).to_not receive(:create_remote_repo)
+          expect(subject).to receive(:push_local_repo)
+
+          subject.create_repo(no_repo)
+        end
+
+        it 'creates when specified' do
+          expect(subject).to receive(:create_remote_repo)
+          expect(subject).to receive(:push_local_repo)
+
+          subject.create_repo(with_repo)
+        end
+      end
+
       describe "#build_tree" do
         subject {Kata::Setup::Base.new}
 

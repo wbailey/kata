@@ -29,7 +29,7 @@ module Kata
           expect(File.exists?(File.join(@use_dir, "lib", "#{subject.kata_name}.js"))).to be true
         end
 
-        it "creates base spec file" do
+        it "creates kata spec file" do
           expect(File.exists?(File.join(@use_dir, "spec", "#{subject.kata_name}_spec.js"))).to be true
         end
       end

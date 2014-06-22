@@ -84,7 +84,7 @@ EOF
       end
 
       def create_session_token
-        authorization = client.create_authorization({:scopes => ['public_repo'], :note => 'Ruby Kata'})
+        authorization = client.create_authorization({:scopes => ['public_repo'], :note => 'Code Kata'})
 
         github.token = authorization.token
 
