@@ -86,7 +86,7 @@ EOF
         print 'Github account password: '
         github.password = STDIN.noecho(&:gets).chomp
 
-        client.user = github.user
+        client.login = github.user
         client.password = github.password
 
         authorization = client.create_authorization({:scopes => ['public_repo'], :note => 'Code Kata'})
