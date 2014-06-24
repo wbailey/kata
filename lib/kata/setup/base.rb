@@ -76,16 +76,29 @@ EOF
           end
       end
 
+      def client_factory
+        if github.token
+          # nothing to do
+        elsif github.user
+          get_password
+          get_token
+        else
+          raise Exception, 'Unable to determine github.token or github.user' if github.user.empty?
+        end
+
+        client.access_token = github.token
+      end
+
       def client
         @client ||= Octokit::Client.new
       end
 
-      def get_token
-        raise Exception, 'Unable to determine github.token or github.user' if github.user.empty?
-
+      def get_password
         print 'Github account password: '
         github.password = STDIN.noecho(&:gets).chomp
+      end
 
+      def get_token
         client.login = github.user
         client.password = github.password
 
@@ -98,9 +111,7 @@ EOF
       end
 
       def create_remote_repo
-        get_token unless github.token
-
-        client.access_token = github.token
+        client_factory
 
         puts "Creating remote repo..."
         client.create_repo "#{repo_name}"
