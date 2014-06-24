@@ -17,16 +17,8 @@ module Kata
           expect(File.directory?(File.join(@use_dir, "lib"))).to be true
         end
 
-        it "creates spect dir" do
+        it "creates spec dir" do
           expect(File.directory?(File.join(@use_dir, "spec"))).to be true
-        end
-
-        it "creates matchers dir" do
-          expect(File.directory?(File.join(@use_dir, "spec", "support", "matchers"))).to be true
-        end
-
-        it "creates helpers dir" do
-          expect(File.directory?(File.join(@use_dir, "spec", "support", "helpers"))).to be true
         end
 
         it "creates README file" do
@@ -41,16 +33,8 @@ module Kata
           expect(File.exists?(File.join(@use_dir, ".rspec"))).to be true
         end
 
-        it "creates spec helper file" do
-          expect(File.exists?(File.join(@use_dir, "spec", "spec_helper.rb"))).to be true
-        end
-
         it "creates base spec file" do
           expect(File.exists?(File.join(@use_dir, "spec", "#{subject.kata_name}_spec.rb"))).to be true
-        end
-
-        it "creates spec matcher file" do
-          expect(File.exists?(File.join(@use_dir, "spec", "support", "matchers", "#{subject.kata_name}.rb"))).to be true
         end
       end
     end

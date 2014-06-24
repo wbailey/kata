@@ -63,27 +63,32 @@ EOF
 
         @github ||=
           begin
-            tmp = OpenStruct.new
+            struct = OpenStruct.new
+
+            struct.token = %x{git config --get github.token}.chomp
 
             github_user = %x{git config --get github.user}.chomp
             shell_user = ENV['USER']
 
-            tmp.user = github_user.empty? ? shell_user : github_user
+            struct.user = github_user.empty? ? shell_user : github_user
 
-            raise Exception, 'Unable to determine github user' if tmp.user.empty?
-
-            print 'Github account password: '
-            tmp.password = STDIN.noecho(&:gets).chomp
-
-            tmp
+            struct
           end
       end
 
       def client
-        @client ||= Octokit::Client.new(:login => github.user, :password => github.password)
+        @client ||= Octokit::Client.new
       end
 
-      def create_session_token
+      def get_token
+        raise Exception, 'Unable to determine github.token or github.user' if github.user.empty?
+
+        print 'Github account password: '
+        github.password = STDIN.noecho(&:gets).chomp
+
+        client.user = github.user
+        client.password = github.password
+
         authorization = client.create_authorization({:scopes => ['public_repo'], :note => 'Code Kata'})
 
         github.token = authorization.token
@@ -93,7 +98,9 @@ EOF
       end
 
       def create_remote_repo
-        create_session_token
+        get_token unless github.token
+
+        client.access_token = github.token
 
         puts "Creating remote repo..."
         client.create_repo "#{repo_name}"
