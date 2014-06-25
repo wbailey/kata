@@ -3,9 +3,9 @@ $: << '.' << File.join(File.dirname(__FILE__), '..', 'lib')
 require 'rspec'
 require 'kata/base'
 require 'simplecov'
-require 'codeclimate-test-reporter'
+#require 'codeclimate-test-reporter'
 
-CodeClimate::TestReporter.start
+#CodeClimate::TestReporter.start
 
 Dir[File.dirname(__FILE__) + '/support/**/*.rb'].each {|f| require f}
 

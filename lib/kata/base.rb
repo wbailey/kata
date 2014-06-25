@@ -66,13 +66,16 @@ module Kata
     def complete(status = true)
       return if @@times.size == 0
 
-      formatter = lambda do |sec|
-        use = sec.round
-        [use/3600, use/60 % 60, use % 60].map {|v| v.to_s.rjust(2,'0')}.join(':')
-      end
-
       suppress_output
+      report
+      content = capture_output
 
+      File.open('report.txt', 'w').write(content)
+
+      puts content
+    end
+
+    def report
       table :border => true do
         row :header => true do
           column 'Requirement', :color => 'red', :width => 80
@@ -82,16 +85,15 @@ module Kata
         @@times.each do |t|
           row do
             column t[:title]
-            column formatter.call(t[:time])
+            column format_time(t[:time])
           end
         end
       end
+    end
 
-      report = capture_output
-
-      File.open('report.txt', 'w').write( report )
-
-      puts report
+    def format_time(sec)
+      use = sec.round
+      [use/3600, use/60 % 60, use % 60].map {|v| v.to_s.rjust(2,'0')}.join(':')
     end
 
     def ancestry
