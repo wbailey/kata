@@ -14,17 +14,6 @@ module Kata
 
       private
 
-      def tree(path)
-        full_path = case path
-          when "lib"
-            File.join(repo_name, 'lib')
-          when "spec"
-            File.join(repo_name, "spec")
-          end
-
-        FileUtils.mkdir_p(full_path)
-      end
-
       # Using here docs for a cheap templating system
       def package_json
         write_repo_file('package.json',<<EOF)

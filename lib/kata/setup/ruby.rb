@@ -15,17 +15,6 @@ module Kata
 
       private
 
-      def tree(path)
-        full_path = case path
-          when "lib"
-            File.join(repo_name, 'lib')
-          when "spec"
-            File.join(repo_name, "spec")
-          end
-
-        FileUtils.mkdir_p(full_path)
-      end
-
       def bootstrap
         write_repo_file('bootstrap.sh',<<EOF)
 #!/bin/bash

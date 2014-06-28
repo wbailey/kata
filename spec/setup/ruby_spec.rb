@@ -25,6 +25,14 @@ module Kata
           expect(File.exists?(File.join(@use_dir, "README"))).to be true
         end
 
+        it "creates bootstrap file" do
+          expect(File.exists?(File.join(@use_dir, "bootstrap.sh"))).to be true
+        end
+
+        it "creates Gemfile file" do
+          expect(File.exists?(File.join(@use_dir, "Gemfile"))).to be true
+        end
+
         it "create base class file" do
           expect(File.exists?(File.join(@use_dir, "lib", "#{subject.kata_name}.rb"))).to be true
         end

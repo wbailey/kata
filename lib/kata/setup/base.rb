@@ -39,6 +39,10 @@ module Kata
 
       private
 
+      def tree(path)
+        FileUtils.mkdir_p(File.join(repo_name, path))
+      end
+
       def use_kata_name
         kata_name.gsub(/( |-)\1?/, '_').downcase
       end
