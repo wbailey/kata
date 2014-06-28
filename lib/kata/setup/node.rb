@@ -7,6 +7,7 @@ module Kata
         %w{lib spec}.each { |path| tree(path) }
         readme
         package_json
+        autotest
         kata_file
         kata_spec
       end
@@ -36,6 +37,10 @@ module Kata
   "private": true
 }
 EOF
+      end
+
+      def autotest
+        write_repo_file('autotest',"./node_modules/jasmine-node/bin/jasmine-node --autotest --color spec/", 0755)
       end
 
       def kata_file

@@ -47,8 +47,11 @@ module Kata
         kata_name.split(/ |-|_/).map(&:capitalize).join
       end
 
-      def write_repo_file(use_file, use_contents)
-        File.open(File.join(repo_name, use_file), 'w') {|f| f.write(use_contents)}
+      def write_repo_file(use_file, use_contents, permissions = 0644)
+        File.open(File.join(repo_name, use_file), 'w') do |f|
+          f.write(use_contents)
+          f.chmod(permissions) rescue Exception
+        end
       end
 
       def readme
@@ -113,27 +116,32 @@ EOF
       def create_remote_repo
         client_factory
 
-        puts "Creating remote repo..."
-        client.create_repo "#{repo_name}"
-        puts "end"
+        begin
+          print "Creating remote repo..."
+          client.create_repo "#{repo_name}"
+        rescue Exception
+          puts "\nError: unable to create the git repo."
+          print 'Proceeding...'
+        ensure
+          puts "done"
+        end
       end
 
       def push_local_repo(new_repo)
-        print "creating files for repo and initializing..."
-
         cmd = "cd #{repo_name} &&"
 
         if new_repo
-          cmd << "git init >/dev/null 2>&1 &&"
-          cmd << "git add README .rspec lib/ spec/ >/dev/null 2>&1 &&"
+          cmd << "git init &&"
+          #cmd << "git add README .rspec lib/ spec/ &&"
+          cmd << "git add . &&"
         else
-          cmd << "git add #{ENV['PWD']}/#{repo_name} >/dev/null 2>&1;"
+          cmd << "git add #{ENV['PWD']}/#{repo_name};"
         end
 
-        cmd << "git commit -m 'starting kata' > /dev/null 2>&1;"
+        cmd << "git commit -m 'starting kata';"
 
         if new_repo
-          cmd << "git remote add origin git@github.com:#{github.user}/#{repo_name}.git >/dev/null 2>&1 &&"
+          cmd << "git remote add origin git@github.com:#{github.user}/#{repo_name}.git &&"
         end
 
         cmd << 'git push origin master'
