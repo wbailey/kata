@@ -1,10 +1,10 @@
 require "spec_helper"
-require "kata/setup/javascript"
+require "kata/setup/node"
 require "fakefs/spec_helpers"
 
 module Kata
   module Setup
-    describe Javascript do
+    describe Node do
       describe "#build_tree" do
         include FakeFS::SpecHelpers
 
@@ -23,6 +23,14 @@ module Kata
 
         it "creates README file" do
           expect(File.exists?(File.join(@use_dir, "README"))).to be true
+        end
+
+        it "creates package.json file" do
+          expect(File.exists?(File.join(@use_dir, "package.json"))).to be true
+        end
+
+        it "creates autotest file" do
+          expect(File.exists?(File.join(@use_dir, "autotest"))).to be true
         end
 
         it "create kata main file" do
