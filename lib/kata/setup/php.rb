@@ -14,17 +14,6 @@ module Kata
 
       private
 
-      def tree(path)
-        full_path = case path
-          when "src"
-            File.join(repo_name, 'src')
-          when "test"
-            File.join(repo_name, "test")
-          end
-
-        FileUtils.mkdir_p(full_path)
-      end
-
       # Using here docs for a cheap templating system
       def bootstrap
         write_repo_file('bootstrap.h',<<EOF)
