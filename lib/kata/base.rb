@@ -73,6 +73,8 @@ module Kata
       File.open('report.txt', 'w').write(content)
 
       puts content
+
+      exit
     end
 
     def report
