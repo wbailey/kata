@@ -74,6 +74,8 @@ module Kata
 
       puts content
 
+      system %q{git add . && git commit -m 'final report' && git push origin master}
+
       exit
     end
 
