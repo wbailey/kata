@@ -13,6 +13,7 @@ module Kata
       subject { use_class.new }
 
       let(:system_call) {"git add . && git commit -m 'test req' > /dev/null"}
+      let(:final_report_call) {"git add . && git commit -m 'final report' && git push origin master"}
 
       describe "#questions" do
         it "individually displays question" do
@@ -70,6 +71,8 @@ module Kata
           expect(subject).to receive(:puts).exactly(2).times
           expect(subject).to receive(:system).with(system_call).and_return(0)
           expect(subject).to receive(:puts)
+          expect(subject).to receive(:system).with(final_report_call).and_return(0)
+          expect(subject).to receive(:exit)
 
           subject.kata 'test' do
             subject.context 'test context' do
@@ -87,6 +90,8 @@ module Kata
           expect(subject).to receive(:puts).exactly(2).times
           expect(subject).to receive(:system).with(system_call).and_return(0)
           expect(subject).to receive(:puts)
+          expect(subject).to receive(:system).with(final_report_call).and_return(0)
+          expect(subject).to receive(:exit)
 
           subject.kata 'test' do
             subject.requirement 'test req'
@@ -101,6 +106,8 @@ module Kata
           expect(subject).to receive(:system).with(system_call).and_return(0)
           expect(subject).to receive(:puts).exactly(3).times
           expect(subject).to receive(:puts)
+          expect(subject).to receive(:system).with(final_report_call).and_return(0)
+          expect(subject).to receive(:exit)
 
           subject.kata 'test' do
             subject.requirement 'test req' do
@@ -119,6 +126,8 @@ module Kata
           expect(subject).to receive(:system).with(system_call).and_return(0)
           expect(subject).to receive(:puts).exactly(3).times
           expect(subject).to receive(:puts)
+          expect(subject).to receive(:system).with(final_report_call).and_return(0)
+          expect(subject).to receive(:exit)
 
           subject.kata 'test' do
             subject.requirement 'test req' do
