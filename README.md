@@ -15,7 +15,7 @@ development.
 
 ### Installation
 
-NOTE: Requires version 1.9.3 and higher
+NOTE: Requires version 1.9.3 or 2.0 (version 2.1 is NOT supported)
 
 It is up on rubygems.org so add it to your project bundle:
 
@@ -43,6 +43,7 @@ or do it the old fashioned way and install the gem manually:
 
             --no-repo         - Add the directory tree and files to the current repo if possible
             --language=option - Define the programming language for the directory tree that is built
+                                VALID OPTIONS [ruby,node,php]
             file              - Path to the code kata source file for the practice session
 
         kata take file
