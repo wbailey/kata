@@ -68,10 +68,6 @@ The [Wiki](https://github.com/wbailey/kata/wiki) has all of the documentation ne
 * questions(&block)
 * question(string)
 
-### Contributors
-
-[Richard Millan](https://github.com/richardiux) updated the tests and forced me to bring more of this up to date
-
 ### License
 
 Copyright (c) 2011-2014 Wes Bailey
