@@ -3,7 +3,7 @@
 A kata is defined as an exercise in programming which helps hone your skills through practice and
 repetition. Authoring katas is done in blogs but you can't really test yourself.  Dave Thomas
 [@pragdave](https://twitter.com/pragdave), started this movement for programming.  He recently
-created [codekata.com](http://www.codekata.com), which is a comprehensive archives of all of the
+created [codekata.com](http://codekata.com), which is a comprehensive archives of all of the
 katas he has written.  Another fine site is [coderdojo](http://www.coderdojo.com). It provides a
 great way to get involved with katas. 
 
