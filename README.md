@@ -15,7 +15,7 @@ development.
 
 ### Installation
 
-NOTE: Requires version 1.9.3 or 2.0 (version 2.1 is NOT supported)
+NOTE: Should run with any supported Ruby version
 
 It is up on rubygems.org so add it to your project bundle:
 
@@ -71,7 +71,7 @@ The [Wiki](https://github.com/wbailey/kata/wiki) has all of the documentation ne
 
 ### License
 
-Copyright (c) 2011-2014 Wes Bailey
+Copyright (c) 2011-2016 Wes Bailey
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and
 associated documentation files (the "Software"), to deal in the Software without restriction,
