@@ -32,6 +32,8 @@ module Kata
           Kata::Setup::Node.new(kata_name).build_tree
         when 'php'
           Kata::Setup::Php.new(kata_name).build_tree
+        when 'java'
+          Kata::Setup::Java.new(kata_name).build_tree
         else
           raise(ArgumentError, "Invalid language type #{type}")
         end
@@ -39,7 +41,7 @@ module Kata
 
       private
 
-      def tree(path)
+      def tree(*path)
         FileUtils.mkdir_p(File.join(repo_name, path))
       end
 

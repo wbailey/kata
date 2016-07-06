@@ -3,6 +3,7 @@ require 'kata/setup/base'
 require 'kata/setup/ruby'
 require 'kata/setup/node'
 require 'kata/setup/php'
+require 'kata/setup/java'
 
 module Kata
   module Setup
@@ -45,6 +46,7 @@ module Kata
         let(:ruby_setup) {Kata::Setup::Ruby.new('kata')}
         let(:node_setup) {Kata::Setup::Node.new('kata')}
         let(:php_setup) {Kata::Setup::Php.new('kata')}
+        let(:java_setup) {Kata::Setup::Java.new('kata')}
 
         it 'invokes the ruby setup' do
           expect(Kata::Setup::Ruby).to receive(:new).and_return(ruby_setup)
@@ -65,6 +67,13 @@ module Kata
           expect(php_setup).to receive(:build_tree)
 
           subject.build_tree 'php'
+        end
+
+        it 'invokes the java setup' do
+          expect(Kata::Setup::Java).to receive(:new).and_return(java_setup)
+          expect(java_setup).to receive(:build_tree)
+
+          subject.build_tree 'java'
         end
 
         it 'rejects invalid language types' do

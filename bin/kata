@@ -21,7 +21,7 @@ PRIMARY COMMANDS
 
         --no-repo         - Add the directory tree and files to the current repo if possible
         --language=option - Define the programming language for the directory tree that is built
-                            VALID OPTIONS [ruby,node,php]
+                            VALID OPTIONS [ruby,node,php,java]
         file              - Path to the code kata source file for the practice session
 
     kata take file
@@ -65,7 +65,7 @@ options.file = ARGV.shift
 case options.action
   when :setup
     raise(ArgumentError, 'No kata source file specified') unless options.file && File.exists?(options.file)
-    raise(ArgumentError, 'Invalid language option') unless %w{ruby node php}.include?(options.language)
+    raise(ArgumentError, 'Invalid language option') unless %w{ruby node php java}.include?(options.language)
 
     name = nil
 
